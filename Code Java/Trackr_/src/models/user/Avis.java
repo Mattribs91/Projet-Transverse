@@ -20,6 +20,10 @@ public class Avis {
         this.nombreEtoiles = nombreEtoiles;
     }
 
+
+
+
+
     public User getCreateur() { return this.createur; }
 
     public void setCreateur(User createur) { this.createur = createur; }

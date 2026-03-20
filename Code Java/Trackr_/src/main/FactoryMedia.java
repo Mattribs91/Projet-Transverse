@@ -1,5 +1,6 @@
 package main;
 
+import models.media.Film;
 import models.user.User;
 import vue.FactoryView;
 import javax.swing.*;
@@ -14,6 +15,8 @@ public class FactoryMedia {
     User alana;
     User jordan;
 
+    Film inception;
+
     public static FactoryMedia factoryMedia;
 
     public FactoryMedia() {
@@ -27,21 +30,37 @@ public class FactoryMedia {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-        // Bonne pratique en Swing : Toujours lancer l'interfa
-        // ce graphique sur le "Event Dispatch Thread"
+
         selma = new User(null, null, "Selma Syone", "Selma.Syone@gmail.com", new ArrayList<>(), new ArrayList<>());
         antoine = new User(null, null, "Antoine Stadler", "AntoineStadler@gmail.com", new ArrayList<>(), new ArrayList<>());
 
-        selma.getSuivi().add(antoine);
-        selma.getFollower().add(antoine);
-        antoine.getFollower().add(selma);
+        alana = new User(null, null, "Alana Babibel", "alanabibeldu92@gmail.com", new ArrayList<>(), new ArrayList<>());
+        jordan = new User(null, null, "Jordan Bartoila", "jordinooooooo@yahou.com", new ArrayList<>(), new ArrayList<>());
 
+
+
+        selma.getSuivi().add(antoine);
+        selma.getSuivi().add(jordan);
+        selma.getSuivi().add(alana);
+
+        selma.getFollower().add(antoine);
+        selma.getFollower().add(jordan);
+        selma.getFollower().add(alana);
+
+        antoine.getFollower().add(selma);
 
     }
 
     public static void main(String[] args) {
         new FactoryMedia();
     }
+
+
+
+
+
+
+
 
 
     public User getAntoine() {
