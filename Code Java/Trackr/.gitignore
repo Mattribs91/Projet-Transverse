@@ -1,0 +1,20 @@
+# Build artifacts
+bin/
+*.class
+
+# Eclipse
+.metadata/
+.recommenders/
+RemoteSystemsTempFiles/
+.loadpath
+.externalToolBuilders/
+*.launch
+.settings/
+
+# IntelliJ
+.idea/
+*.iws
+
+# OS-specific
+.DS_Store
+Thumbs.db
