@@ -1,6 +1,7 @@
 package vue;
 
 
+import controller.FactoryController;
 import main.FactoryMedia;
 
 import javax.swing.*;
@@ -12,12 +13,12 @@ import java.awt.event.MouseEvent;
 public class FactoryView extends JPanel {
 
 
-    private static final Color COLOR_BACKGROUND_DARK = new Color(18, 22, 28);
-    private static final Color COLOR_SIDEBAR_BACKGROUND = new Color(25, 30, 38);
-    private static final Color COLOR_TEXT_LIGHT = new Color(230, 230, 230);
-    private static final Color COLOR_TEXT_DIM = new Color(150, 150, 150);
-    private static final Color COLOR_ACCENT_GREEN = new Color(50, 205, 50); // Vert vif
-    private static final Color COLOR_CARD_BACKGROUND = new Color(30, 35, 43);
+    public static final Color COLOR_BACKGROUND_DARK = new Color(18, 22, 28);
+    public static final Color COLOR_SIDEBAR_BACKGROUND = new Color(25, 30, 38);
+    public static final Color COLOR_TEXT_LIGHT = new Color(230, 230, 230);
+    public static final Color COLOR_TEXT_DIM = new Color(150, 150, 150);
+    public static final Color COLOR_ACCENT_GREEN = new Color(50, 205, 50); // Vert vif
+    public static final Color COLOR_CARD_BACKGROUND = new Color(30, 35, 43);
 
 
     private JButton btnAccueil;
@@ -29,7 +30,7 @@ public class FactoryView extends JPanel {
 
     private JPanel centralContentPanel;
     private JScrollPane contentScrollPane;
-    private JPanel contentContainer; // Panneau à l'intérieur du scrollpane
+    private JPanel contentContainer;
 
 
     FactoryMedia factoryMedia;
@@ -74,12 +75,9 @@ public class FactoryView extends JPanel {
         btnParametres = createSidebarButton("Paramètres");
         sidebarPanel.add(btnParametres);
 
-
-        // --- 3. CRÉATION DE LA ZONE CENTRALE (CONTENU PAR DÉFAUT ET STRUCTURE) ---
         centralContentPanel = new JPanel(new BorderLayout());
         centralContentPanel.setBackground(COLOR_BACKGROUND_DARK);
 
-        // Panneau de recherche (en haut)
         JPanel searchPanel = new JPanel(new BorderLayout());
         searchPanel.setBackground(COLOR_BACKGROUND_DARK);
         searchPanel.setBorder(new EmptyBorder(20, 30, 10, 30));
@@ -92,7 +90,8 @@ public class FactoryView extends JPanel {
                 BorderFactory.createLineBorder(new Color(60, 60, 60), 1),
                 new EmptyBorder(10, 15, 10, 15)
         ));
-        // Effet de base pour le texte d'espace réservé
+
+
         searchField.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -119,19 +118,7 @@ public class FactoryView extends JPanel {
         contentScrollPane.getViewport().setBackground(COLOR_BACKGROUND_DARK);
         centralContentPanel.add(contentScrollPane, BorderLayout.CENTER);
 
-        this.getBtnProfil().addActionListener(e -> {
-            JPanel center = this.getCentralContentPanel();
-            center.removeAll();
-
-            UserView profilPage = new UserView(factoryMedia.getSelma());
-
-            center.add(profilPage, BorderLayout.CENTER);
-
-            center.revalidate();
-            center.repaint();
-        });
-
-
+        FactoryController.openViewUser(getBtnProfil(), centralContentPanel);
 
         this.add(sidebarPanel, BorderLayout.WEST);
         this.add(centralContentPanel, BorderLayout.CENTER);
@@ -163,19 +150,13 @@ public class FactoryView extends JPanel {
         button.setCursor(new Cursor(Cursor.HAND_CURSOR));
         button.setBorder(new EmptyBorder(5, 10, 5, 10));
 
-        button.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                button.setForeground(COLOR_ACCENT_GREEN);
-            }
-            @Override
-            public void mouseExited(MouseEvent e) {
-                button.setForeground(COLOR_TEXT_LIGHT);
-            }
-        });
+        FactoryController.mouseDesigned(button);
 
         return button;
     }
+
+
+
 
     public JButton getBtnAccueil() { return btnAccueil; }
     public JButton getBtnProfil() { return btnProfil; }
