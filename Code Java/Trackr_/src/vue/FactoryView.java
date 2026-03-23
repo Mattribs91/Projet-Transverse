@@ -36,7 +36,7 @@ public class FactoryView extends JPanel {
     FactoryMedia factoryMedia;
 
 
-    public FactoryView(FactoryMedia factoryMedia) {
+    public FactoryView(FactoryMedia factoryMedia, Boolean sideBar) {
         this.setLayout(new BorderLayout());
         this.setBackground(COLOR_BACKGROUND_DARK);
 
@@ -91,7 +91,6 @@ public class FactoryView extends JPanel {
                 new EmptyBorder(10, 15, 10, 15)
         ));
 
-
         searchField.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -119,10 +118,14 @@ public class FactoryView extends JPanel {
         centralContentPanel.add(contentScrollPane, BorderLayout.CENTER);
 
         FactoryController.openViewUser(getBtnProfil(), centralContentPanel);
+        FactoryController.openViewFactory(getBtnAccueil(), centralContentPanel);
 
-        this.add(sidebarPanel, BorderLayout.WEST);
+        if(sideBar)
+            this.add(sidebarPanel, BorderLayout.WEST);
+
         this.add(centralContentPanel, BorderLayout.CENTER);
     }
+
 
 
 

@@ -1,6 +1,7 @@
 package controller;
 
 import main.FactoryMedia;
+import vue.FactoryView;
 import vue.UserView;
 
 import javax.swing.*;
@@ -35,6 +36,20 @@ public class FactoryController {
             UserView profilPage = new UserView(FactoryMedia.getFactoryMedia().getSelma());
 
             center.add(profilPage, BorderLayout.CENTER);
+
+            center.revalidate();
+            center.repaint();
+        });
+    }
+
+    public static void openViewFactory(JButton button, JPanel jPanel){
+        button.addActionListener(e -> {
+            JPanel center = jPanel;
+            center.removeAll();
+
+            FactoryView factoryview = new FactoryView(FactoryMedia.getFactoryMedia(), false);
+
+            center.add(factoryview, BorderLayout.CENTER);
 
             center.revalidate();
             center.repaint();

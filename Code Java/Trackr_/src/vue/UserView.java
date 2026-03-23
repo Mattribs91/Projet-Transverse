@@ -35,7 +35,6 @@ public class UserView extends JPanel {
         headerPanel.setBackground(COLOR_BACKGROUND_DARK);
         headerPanel.setMaximumSize(new Dimension(1000, 120));
 
-        // --- GAUCHE : Avatar et Infos ---
         JPanel infoPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 20, 0));
         infoPanel.setBackground(COLOR_BACKGROUND_DARK);
 
@@ -70,8 +69,8 @@ public class UserView extends JPanel {
         statsPanel.setBackground(COLOR_BACKGROUND_DARK);
 
         statsPanel.add(createStatItem("0", "VUS"));
-        statsPanel.add(createStatItem("0", "LISTES"));
-        statsPanel.add(createStatItem(FactoryMedia.getFactoryMedia().getSelma().getSuivi().size() + "", "SUIVIS"));
+        statsPanel.add(createStatItem(user.getFollower().size() +" ", "FOLLOWER"));
+        statsPanel.add(createStatItem(user.getSuivi().size() + "", "SUIVIS"));
 
         headerPanel.add(infoPanel, BorderLayout.WEST);
         headerPanel.add(statsPanel, BorderLayout.EAST);

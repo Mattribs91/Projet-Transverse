@@ -18,6 +18,7 @@ public class FactoryMedia {
     Film inception;
 
     public static FactoryMedia factoryMedia;
+    public static FactoryView factoryview;
 
     public FactoryMedia() {
         factoryMedia = this;
@@ -25,11 +26,12 @@ public class FactoryMedia {
         JFrame frame = new JFrame("Trackr");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1280, 720);
-        FactoryView accueilView = new FactoryView(this);
+        FactoryView accueilView = new FactoryView(this, true);
         frame.setContentPane(accueilView);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
+        factoryview = accueilView;
 
         selma = new User(null, null, "Selma Syone", "Selma.Syone@gmail.com", new ArrayList<>(), new ArrayList<>());
         antoine = new User(null, null, "Antoine Stadler", "AntoineStadler@gmail.com", new ArrayList<>(), new ArrayList<>());
@@ -56,12 +58,9 @@ public class FactoryMedia {
     }
 
 
-
-
-
-
-
-
+    public static FactoryView getFactoryview() {
+        return factoryview;
+    }
 
     public User getAntoine() {
         return antoine;
