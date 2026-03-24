@@ -23,7 +23,6 @@ public class FactoryMedia {
     User jordan;
 
     List<Media> mediaEnVrac;
-    List<Avis> lesAvisDeToutLeMonde;
 
     public static FactoryMedia factoryMedia;
     public static FactoryView factoryview;
@@ -77,13 +76,11 @@ public class FactoryMedia {
         mesPlaylist.add(playlist_7);
         mesPlaylist.add(playlist_8);
 
-        selma = new User(null, mesPlaylist, "Selma Syone", "Selma.Syone@gmail.com", new ArrayList<>(), new ArrayList<>(), playlist_1, playlist_2);
-        antoine = new User(null, null, "Antoine Stadler", "AntoineStadler@gmail.com", new ArrayList<>(), new ArrayList<>(), playlist_3, playlist_4);
+        selma = new User(null, mesPlaylist, "Selma Syone", "Selma.Syone@gmail.com", new ArrayList<>(), new ArrayList<>());
+        antoine = new User(null, null, "Antoine Stadler", "AntoineStadler@gmail.com", new ArrayList<>(), new ArrayList<>());
 
-        alana = new User(null, null, "Alana Babibel", "alanabibeldu92@gmail.com", new ArrayList<>(), new ArrayList<>(), playlist_5, playlist_6);
-        jordan = new User(null, null, "Jordan Bartoila", "jordinooooooo@yahou.com", new ArrayList<>(), new ArrayList<>(), playlist_7, playlist_8);
-
-
+        alana = new User(null, null, "Alana Babibel", "alanabibeldu92@gmail.com", new ArrayList<>(), new ArrayList<>());
+        jordan = new User(null, null, "Jordan Bartoila", "jordinooooooo@yahou.com", new ArrayList<>(), new ArrayList<>());
 
         selma.getSuivi().add(antoine);
         selma.getSuivi().add(jordan);
@@ -113,11 +110,9 @@ public class FactoryMedia {
                 "Pas mes gouts pour le coup... ",
                 2);
 
-        lesAvisDeToutLeMonde = new ArrayList<>();
-
-        lesAvisDeToutLeMonde.add(avisSelma1);
-        lesAvisDeToutLeMonde.add(avisSelma2);
-        lesAvisDeToutLeMonde.add(avisSelma3);
+        selma.getSesAvis().add(avisSelma1);
+        selma.getSesAvis().add(avisSelma2);
+        selma.getSesAvis().add(avisSelma3);
     }
 
 
@@ -125,9 +120,6 @@ public class FactoryMedia {
         return mediaEnVrac;
     }
 
-    public List<Avis> getLesAvisDeToutLeMonde() {
-        return lesAvisDeToutLeMonde;
-    }
 
     public static void main(String[] args) {
         new FactoryMedia();

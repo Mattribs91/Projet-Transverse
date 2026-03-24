@@ -105,7 +105,7 @@ public class UserView extends JPanel {
         JPanel statsPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 30, 20));
         statsPanel.setBackground(COLOR_BACKGROUND_DARK);
 
-        statsPanel.add(createStatItem(user.getVu().getLesMedias().size() + "", "VUS"));
+        statsPanel.add(createStatItem( "", "VUS"));
         statsPanel.add(createStatItem(user.getFollower().size() + "", "FOLLOWERS"));
         statsPanel.add(createStatItem(user.getSuivi().size() + "", "SUIVIS"));
 
@@ -189,8 +189,7 @@ public class UserView extends JPanel {
         container.setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE));
 
         // Récupère le nombre total d'avis
-        long countAvis = FactoryMedia.getFactoryMedia()
-                .getLesAvisDeToutLeMonde()
+        long countAvis = user.getSesAvis()
                 .stream()
                 .filter(avis -> avis != null && avis.getCreateur() != null)
                 .filter(avis -> avis.getCreateur().equals(user))
@@ -204,7 +203,7 @@ public class UserView extends JPanel {
         cardsWrapper.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         // Ajoute chaque avis dans le Wrapper (qui va les aligner et les passer à la ligne)
-        FactoryMedia.getFactoryMedia().getLesAvisDeToutLeMonde().stream()
+        user.getSesAvis().stream()
                 .filter(avis -> avis != null && avis.getCreateur() != null)
                 .filter(avis -> avis.getCreateur().equals(user))
                 .forEach(avis -> {

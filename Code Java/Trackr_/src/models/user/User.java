@@ -10,19 +10,14 @@ public class User {
     private String mail;
     List<User> follower;
     List<User> suivi;
-    Playlist like;
-    Playlist vu;
 
 
-    public User(List<Avis> sesAvis, List<Playlist> mesPlaylists, String pseudo, String mail, List<User> follower, List<User> suivi, Playlist like, Playlist vu) {
+    public User(List<Avis> sesAvis, List<Playlist> mesPlaylists, String pseudo, String mail, List<User> follower, List<User> suivi) {
         this.sesAvis = sesAvis;
         this.mesPlaylists = mesPlaylists;
         this.pseudo = pseudo;
         this.mail = mail;
         this.follower = follower;
-        this.suivi = suivi;
-        this.like = like;
-        this.vu = vu;
     }
 
     public List<Avis> getSesAvis() {
@@ -73,11 +68,4 @@ public class User {
         this.suivi = suivi;
     }
 
-    public Playlist getLike() {return like;}
-
-    public void setLike(Playlist like) {this.like = like;}
-
-    public Playlist getVu() {return vu;}
-
-    public void setVu(Playlist vu) {this.vu = vu;}
 }
