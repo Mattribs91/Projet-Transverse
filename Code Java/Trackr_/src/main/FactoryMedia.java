@@ -3,10 +3,12 @@ package main;
 import models.media.Categorie;
 import models.media.Film;
 import models.media.Media;
+import models.user.Avis;
 import models.user.Playlist;
 import models.user.User;
 import vue.FactoryView;
 import javax.swing.*;
+import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -21,6 +23,7 @@ public class FactoryMedia {
     User jordan;
 
     List<Media> mediaEnVrac;
+    List<Avis> lesAvisDeToutLeMonde;
 
     public static FactoryMedia factoryMedia;
     public static FactoryView factoryview;
@@ -54,6 +57,31 @@ public class FactoryMedia {
         Film filmcute3 = new Film(new ArrayList<>(), Categorie.ROMANCE, "Pride & Prejudice", new Date(105, 8, 16), "Joe Wright");
         Film filmcute4 = new Film(new ArrayList<>(), Categorie.ROMANCE, "La La Land", new Date(116, 11, 9), "Damien Chazelle");
         Film filmcute5 = new Film(new ArrayList<>(), Categorie.ROMANCE, "Before Sunrise", new Date(95, 0, 27), "Richard Linklater");
+
+        Avis avisSelma1 = new Avis(getSelma(),
+                filmcute2,
+                new Date(126, 7, 4),
+                "Ce film m'a trop fait pleurer... Mon chien et moi avons passé des soirees memorable... ",
+                5);
+
+        Avis avisSelma2 = new Avis(getSelma(),
+                filmcute4,
+                new Date(126, 8, 1),
+                "Ils sont trop trop mignonnnnn !!!! <3 <3 <3 ",
+                5);
+
+        Avis avisSelma3 = new Avis(getSelma(),
+                filmcute4,
+                new Date(126, 6, 9),
+                "Pas mes gouts pour le coup... ",
+                5);
+
+        lesAvisDeToutLeMonde = new ArrayList<>();
+
+        lesAvisDeToutLeMonde.add(avisSelma1);
+        lesAvisDeToutLeMonde.add(avisSelma2);
+        lesAvisDeToutLeMonde.add(avisSelma3);
+
 
         mediaEnVrac = new ArrayList<>();
         mediaEnVrac.add(filmcute1);
