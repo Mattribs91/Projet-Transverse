@@ -25,10 +25,6 @@ public class User {
         this.vu = vu;
     }
 
-
-
-
-
     public List<Avis> getSesAvis() {
         return this.sesAvis;
     }

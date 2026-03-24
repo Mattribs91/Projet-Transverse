@@ -108,7 +108,7 @@ public class FactoryMedia {
                 5);
 
         Avis avisSelma3 = new Avis(getSelma(),
-                filmcute4,
+                filmcute1,
                 new Date(126, 6, 9),
                 "Pas mes gouts pour le coup... ",
                 5);
