@@ -105,13 +105,13 @@ public class FactoryMedia {
                 filmcute4,
                 new Date(126, 8, 1),
                 "Ils sont trop trop mignonnnnn !!!! <3 <3 <3 ",
-                5);
+                4);
 
         Avis avisSelma3 = new Avis(getSelma(),
                 filmcute1,
                 new Date(126, 6, 9),
                 "Pas mes gouts pour le coup... ",
-                5);
+                2);
 
         lesAvisDeToutLeMonde = new ArrayList<>();
 

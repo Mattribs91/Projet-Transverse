@@ -6,6 +6,8 @@ import models.media.Media;
 import models.user.Avis;
 import models.user.Playlist;
 import models.user.User;
+import utils.WrapLayout;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -49,7 +51,7 @@ public class UserView extends JPanel {
         // Section des playlists
         contentPanel.add(createSectionTitle("Mes Playlists"));
         contentPanel.add(createPlaylistPerso());
-        contentPanel.add(Box.createVerticalStrut(40));
+        contentPanel.add(Box.createVerticalStrut(10));
 
         // On met tout ça dans un ScrollPane pour pouvoir scroller
         JScrollPane scrollPane = new JScrollPane(contentPanel);
@@ -179,7 +181,6 @@ public class UserView extends JPanel {
         return panel;
     }
 
-    // Affiche la liste des critiques laissées par l'utilisateur
     private JPanel createDernierAvis() {
         JPanel container = new JPanel();
         container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
@@ -191,22 +192,98 @@ public class UserView extends JPanel {
         long countAvis = FactoryMedia.getFactoryMedia()
                 .getLesAvisDeToutLeMonde()
                 .stream()
+                .filter(avis -> avis != null && avis.getCreateur() != null)
                 .filter(avis -> avis.getCreateur().equals(user))
                 .count();
 
         container.add(createSectionTitle("Mes Derniers avis (" + countAvis + ")"));
-        container.add(Box.createRigidArea(new Dimension(0, 15)));
 
-        // Ajoute chaque avis sous forme de carte
+
+        JPanel cardsWrapper = new JPanel(new WrapLayout(FlowLayout.LEFT, 15, 15));
+        cardsWrapper.setBackground(COLOR_BACKGROUND_DARK);
+        cardsWrapper.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+        // Ajoute chaque avis dans le Wrapper (qui va les aligner et les passer à la ligne)
         FactoryMedia.getFactoryMedia().getLesAvisDeToutLeMonde().stream()
                 .filter(avis -> avis != null && avis.getCreateur() != null)
                 .filter(avis -> avis.getCreateur().equals(user))
                 .forEach(avis -> {
-                    container.add(createCarteCritique(avis));
-                    container.add(Box.createRigidArea(new Dimension(0, 15)));
+                    cardsWrapper.add(createCarteCritique(avis));
                 });
 
+        container.add(cardsWrapper);
+
+        container.add(cardsWrapper);
         return container;
+    }
+
+    private JPanel createCarteCritique(Avis avis) {
+        Media media = avis.getMediaAssocie();
+
+        // On passe sur un BorderLayout vertical (Info film en haut, Avis en bas)
+        JPanel card = new JPanel(new BorderLayout(0, 15)); // 15px d'espace entre le haut et le bas
+        card.setBackground(COLOR_CARD_BACKGROUND);
+        card.setBorder(new EmptyBorder(15, 15, 15, 15));
+
+        // --- TAILLE FIXE POUR LES CARTES ---
+        // C'est ce qui permet au FlowLayout de les aligner proprement
+        Dimension cardSize = new Dimension(380, 220);
+        card.setPreferredSize(cardSize);
+        card.setMinimumSize(cardSize);
+        card.setMaximumSize(cardSize);
+
+        // --- PARTIE HAUTE (Infos du média) ---
+        JPanel filmPanel = new JPanel();
+        filmPanel.setLayout(new BoxLayout(filmPanel, BoxLayout.Y_AXIS));
+        filmPanel.setBackground(COLOR_CARD_BACKGROUND);
+
+        JLabel titleLabel = new JLabel(media.getTitre().toUpperCase());
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 16)); // Police légèrement réduite
+        titleLabel.setForeground(COLOR_ACCENT_GREEN);
+
+        JLabel directorLabel = new JLabel("De " + media.getRealisateur());
+        directorLabel.setFont(new Font("Arial", Font.ITALIC, 12));
+        directorLabel.setForeground(COLOR_TEXT_DIM);
+
+        JLabel catLabel = new JLabel(media.getLaCategorie().toString());
+        catLabel.setFont(new Font("Arial", Font.PLAIN, 10));
+        catLabel.setForeground(COLOR_TEXT_LIGHT);
+        catLabel.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(COLOR_TEXT_DIM),
+                new EmptyBorder(2, 5, 2, 5)
+        ));
+
+        filmPanel.add(titleLabel);
+        filmPanel.add(Box.createRigidArea(new Dimension(0, 5)));
+        filmPanel.add(directorLabel);
+        filmPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        filmPanel.add(catLabel);
+
+        // --- PARTIE BASSE (Note et commentaire) ---
+        JPanel avisPanel = new JPanel(new BorderLayout(0, 8)); // 8px entre les étoiles et le texte
+        avisPanel.setBackground(COLOR_CARD_BACKGROUND);
+
+        String etoiles = "\u2605".repeat(avis.getNombreEtoiles()) + "\u2606".repeat(5 - avis.getNombreEtoiles());
+        JLabel starsLabel = new JLabel(etoiles + " (" + avis.getNombreEtoiles() + "/5)  •  " + avis.getDateDeCreation().toLocaleString().split(",")[0]);
+        starsLabel.setFont(new Font("Dialog", Font.BOLD, 13));
+        starsLabel.setForeground(new Color(255, 215, 0));
+
+        JTextArea commentArea = new JTextArea(avis.getCommentaire());
+        commentArea.setLineWrap(true);
+        commentArea.setWrapStyleWord(true);
+        commentArea.setEditable(false);
+        commentArea.setBackground(COLOR_CARD_BACKGROUND);
+        commentArea.setForeground(COLOR_TEXT_LIGHT);
+        commentArea.setFont(new Font("Arial", Font.PLAIN, 13));
+
+        avisPanel.add(starsLabel, BorderLayout.NORTH);
+        avisPanel.add(commentArea, BorderLayout.CENTER);
+
+        // On assemble le tout
+        card.add(filmPanel, BorderLayout.NORTH);
+        card.add(avisPanel, BorderLayout.CENTER);
+
+        return card;
     }
 
     // Composant UI : Une carte de playlist (Image + Titre + Compteur)
@@ -219,8 +296,7 @@ public class UserView extends JPanel {
         card.setMinimumSize(cardSize);
         card.setMaximumSize(cardSize);
 
-        // Fausse image de couverture
-        JLabel imagePlaceholder = new JLabel("\uD83D\uDCFD\uFE0F", SwingConstants.CENTER);
+        JLabel imagePlaceholder = new JLabel("<html><span style='font-family: Segoe UI Emoji;'>🎥</span></html>", SwingConstants.CENTER);
         imagePlaceholder.setFont(new Font("Arial", Font.PLAIN, 50));
         imagePlaceholder.setOpaque(true);
         imagePlaceholder.setBackground(COLOR_CARD_BACKGROUND);
@@ -252,69 +328,6 @@ public class UserView extends JPanel {
         return card;
     }
 
-    // Composant UI : La carte détaillée pour un avis (Infos film à gauche, avis à droite)
-    private JPanel createCarteCritique(Avis avis) {
-        Media media = avis.getMediaAssocie();
-
-        JPanel card = new JPanel(new BorderLayout(20, 0));
-        card.setBackground(COLOR_CARD_BACKGROUND);
-        card.setBorder(new EmptyBorder(15, 15, 15, 15));
-        card.setMaximumSize(new Dimension(Integer.MAX_VALUE, 200));
-        card.setAlignmentX(Component.LEFT_ALIGNMENT);
-
-        // Colonne de gauche (Infos du média)
-        JPanel filmPanel = new JPanel();
-        filmPanel.setLayout(new BoxLayout(filmPanel, BoxLayout.Y_AXIS));
-        filmPanel.setBackground(COLOR_CARD_BACKGROUND);
-        filmPanel.setPreferredSize(new Dimension(250, 150));
-
-        JLabel titleLabel = new JLabel(media.getTitre().toUpperCase());
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 18));
-        titleLabel.setForeground(COLOR_ACCENT_GREEN);
-
-        JLabel directorLabel = new JLabel("De " + media.getRealisateur());
-        directorLabel.setFont(new Font("Arial", Font.ITALIC, 13));
-        directorLabel.setForeground(COLOR_TEXT_DIM);
-
-        JLabel catLabel = new JLabel(media.getLaCategorie().toString());
-        catLabel.setFont(new Font("Arial", Font.PLAIN, 11));
-        catLabel.setForeground(COLOR_TEXT_LIGHT);
-        catLabel.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createLineBorder(COLOR_TEXT_DIM),
-                new EmptyBorder(2, 5, 2, 5)
-        ));
-
-        filmPanel.add(titleLabel);
-        filmPanel.add(Box.createRigidArea(new Dimension(0, 5)));
-        filmPanel.add(directorLabel);
-        filmPanel.add(Box.createRigidArea(new Dimension(0, 15)));
-        filmPanel.add(catLabel);
-
-        // Colonne de droite (Note et commentaire)
-        JPanel avisPanel = new JPanel(new BorderLayout(0, 10));
-        avisPanel.setBackground(COLOR_CARD_BACKGROUND);
-
-        String etoiles = "★".repeat(avis.getNombreEtoiles()) + "☆".repeat(5 - avis.getNombreEtoiles());
-        JLabel starsLabel = new JLabel(etoiles + "  •  " + avis.getDateDeCreation().toLocaleString().split(",")[0]);
-        starsLabel.setFont(new Font("Arial", Font.BOLD, 14));
-        starsLabel.setForeground(new Color(255, 215, 0));
-
-        JTextArea commentArea = new JTextArea(avis.getCommentaire());
-        commentArea.setLineWrap(true);
-        commentArea.setWrapStyleWord(true);
-        commentArea.setEditable(false);
-        commentArea.setBackground(COLOR_CARD_BACKGROUND);
-        commentArea.setForeground(COLOR_TEXT_LIGHT);
-        commentArea.setFont(new Font("Arial", Font.PLAIN, 14));
-
-        avisPanel.add(starsLabel, BorderLayout.NORTH);
-        avisPanel.add(commentArea, BorderLayout.CENTER);
-
-        card.add(filmPanel, BorderLayout.WEST);
-        card.add(avisPanel, BorderLayout.CENTER);
-
-        return card;
-    }
 
     // Helper : Formate rapidement les titres de section
     private JLabel createSectionTitle(String title) {
