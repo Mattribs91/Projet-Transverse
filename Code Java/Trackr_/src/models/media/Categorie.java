@@ -2,6 +2,9 @@ package models.media;
 
 public enum Categorie {
     SF,
-    Horreur,
-    Auteur
+    HORREUR,
+    AUTEUR,
+    ROMANCE
+
+    //toujours mettre les Enums en UpperCase
 }

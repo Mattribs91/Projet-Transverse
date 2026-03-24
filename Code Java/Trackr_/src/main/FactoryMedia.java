@@ -1,6 +1,8 @@
 package main;
 
+import models.media.Categorie;
 import models.media.Film;
+import models.media.Media;
 import models.user.Playlist;
 import models.user.User;
 import vue.FactoryView;
@@ -18,7 +20,7 @@ public class FactoryMedia {
     User alana;
     User jordan;
 
-    Film inception;
+    List<Media> mediaEnVrac;
 
     public static FactoryMedia factoryMedia;
     public static FactoryView factoryview;
@@ -36,7 +38,7 @@ public class FactoryMedia {
 
         factoryview = accueilView;
 
-        Playlist playlist_1 = new Playlist(new ArrayList<>(), "Playlist n1", new Date(), false, selma);
+        Playlist playlist_1 = new Playlist(new ArrayList<>(), "Mes Films trop trop <3", new Date(), false, selma);
         Playlist playlist_2 = new Playlist(new ArrayList<>(), "Playlist n2", new Date(), false, selma);
         Playlist playlist_3 = new Playlist(new ArrayList<>(), "Playlist n3", new Date(), false, antoine);
         Playlist playlist_4 = new Playlist(new ArrayList<>(), "Playlist n4", new Date(), false, antoine);
@@ -44,6 +46,21 @@ public class FactoryMedia {
         Playlist playlist_6 = new Playlist(new ArrayList<>(), "Playlist n6", new Date(), false, alana);
         Playlist playlist_7 = new Playlist(new ArrayList<>(), "Playlist n7", new Date(), false, jordan);
         Playlist playlist_8 = new Playlist(new ArrayList<>(), "Playlist n8", new Date(), false, jordan);
+
+
+        //ajout de films de romance -> dans le but de creer une playlist de romance pour selma + ajout davis sur ceux ci
+        Film filmcute1 = new Film(new ArrayList<>(), Categorie.ROMANCE, "About Time", new Date(113, 8, 4), "Richard Curtis");
+        Film filmcute2 = new Film(new ArrayList<>(), Categorie.ROMANCE, "Past Lives", new Date(123, 5, 2), "Celine Song");
+        Film filmcute3 = new Film(new ArrayList<>(), Categorie.ROMANCE, "Pride & Prejudice", new Date(105, 8, 16), "Joe Wright");
+        Film filmcute4 = new Film(new ArrayList<>(), Categorie.ROMANCE, "La La Land", new Date(116, 11, 9), "Damien Chazelle");
+        Film filmcute5 = new Film(new ArrayList<>(), Categorie.ROMANCE, "Before Sunrise", new Date(95, 0, 27), "Richard Linklater");
+
+        mediaEnVrac = new ArrayList<>();
+        mediaEnVrac.add(filmcute1);
+        mediaEnVrac.add(filmcute2);
+        mediaEnVrac.add(filmcute3);
+        mediaEnVrac.add(filmcute4);
+        mediaEnVrac.add(filmcute5);
 
         List mesPlaylist = new ArrayList<Playlist>();
         mesPlaylist.add(playlist_1);
