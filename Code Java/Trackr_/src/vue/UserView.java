@@ -1,10 +1,14 @@
 package vue;
 
 import main.FactoryMedia;
+import models.media.Media;
+import models.user.Avis;
 import models.user.User;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.util.Comparator;
+import java.util.Optional;
 
 public class UserView extends JPanel {
 
@@ -26,7 +30,9 @@ public class UserView extends JPanel {
 
         this.add(createHeaderSection(user));
         this.add(Box.createRigidArea(new Dimension(0, 40)));
+        this.add(createAbonnementsSection());
 
+        this.add(createDernierAvis());
     }
 
 
@@ -79,16 +85,99 @@ public class UserView extends JPanel {
     }
 
     private JPanel createAbonnementsSection() {
-        JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT, 15, 0));
+        JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 0));
         panel.setBackground(COLOR_BACKGROUND_DARK);
-        panel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        panel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         this.user.getSuivi().forEach(user1 -> {
             panel.add(createBadge(user1.getPseudo()));
         });
-
         return panel;
     }
+
+    private JPanel createDernierAvis() {
+        JPanel container = new JPanel();
+        container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
+        container.setBackground(COLOR_BACKGROUND_DARK);
+
+        // Titre de la section
+        container.add(createSectionTitle("Mes Derniers avis (" + FactoryMedia.getFactoryMedia()
+                .getLesAvisDeToutLeMonde()
+                .stream()
+                .filter(avis -> avis.getCreateur()
+                        .equals(user)).count() + ") "));
+
+        container.add(Box.createRigidArea(new Dimension(0, 10)));
+
+         FactoryMedia.getFactoryMedia().getLesAvisDeToutLeMonde().stream()
+                 .filter(avis -> avis != null && avis.getCreateur() != null)
+                 .filter(avis -> avis.getCreateur().equals(user))
+                 .forEach(avis -> {
+                     container.add(createCarteCritique(avis));
+                 });
+
+        return container;
+    }
+
+    private JPanel createCarteCritique(Avis avis) {
+        Media media = avis.getMediaAssocie();
+
+        JPanel card = new JPanel(new BorderLayout(20, 0));
+        card.setBackground(COLOR_CARD_BACKGROUND);
+        card.setBorder(new EmptyBorder(15, 15, 15, 15));
+        card.setMaximumSize(new Dimension(1000, 200));
+
+        JPanel filmPanel = new JPanel();
+        filmPanel.setLayout(new BoxLayout(filmPanel, BoxLayout.Y_AXIS));
+        filmPanel.setBackground(COLOR_CARD_BACKGROUND);
+        filmPanel.setPreferredSize(new Dimension(200, 150));
+
+        JLabel titleLabel = new JLabel(media.getTitre().toUpperCase());
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 18));
+        titleLabel.setForeground(COLOR_ACCENT_GREEN);
+
+        JLabel directorLabel = new JLabel("De " + media.getRealisateur());
+        directorLabel.setFont(new Font("Arial", Font.ITALIC, 13));
+        directorLabel.setForeground(COLOR_TEXT_DIM);
+
+        JLabel catLabel = new JLabel(media.getLaCategorie().toString());
+        catLabel.setFont(new Font("Arial", Font.PLAIN, 11));
+        catLabel.setForeground(COLOR_TEXT_LIGHT);
+        catLabel.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(COLOR_TEXT_DIM),
+                new EmptyBorder(2, 5, 2, 5)
+        ));
+
+        filmPanel.add(titleLabel);
+        filmPanel.add(directorLabel);
+        filmPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        filmPanel.add(catLabel);
+
+        JPanel avisPanel = new JPanel(new BorderLayout(0, 10));
+        avisPanel.setBackground(COLOR_CARD_BACKGROUND);
+
+        String etoiles = "★".repeat(avis.getNombreEtoiles()) + "☆".repeat(5 - avis.getNombreEtoiles());
+        JLabel starsLabel = new JLabel(etoiles + "  •  " + avis.getDateDeCreation().toLocaleString().split(",")[0]);
+        starsLabel.setFont(new Font("Arial", Font.BOLD, 14));
+        starsLabel.setForeground(new Color(255, 215, 0)); // Couleur Or
+
+        JTextArea commentArea = new JTextArea(avis.getCommentaire());
+        commentArea.setLineWrap(true);
+        commentArea.setWrapStyleWord(true);
+        commentArea.setEditable(false);
+        commentArea.setBackground(COLOR_CARD_BACKGROUND);
+        commentArea.setForeground(COLOR_TEXT_LIGHT);
+        commentArea.setFont(new Font("Arial", Font.PLAIN, 14));
+
+        avisPanel.add(starsLabel, BorderLayout.NORTH);
+        avisPanel.add(commentArea, BorderLayout.CENTER);
+
+        card.add(filmPanel, BorderLayout.WEST);
+        card.add(avisPanel, BorderLayout.CENTER);
+
+        return card;
+    }
+
 
     private JLabel createSectionTitle(String title) {
         JLabel label = new JLabel(title);
@@ -120,7 +209,18 @@ public class UserView extends JPanel {
     }
 
     private JLabel createBadge(String text) {
-        JLabel badge = new JLabel("  " + text + "  "); // Espaces pour simuler la marge interne
+        JLabel badge = new JLabel(" @" + text + "  "); // Espaces pour simuler la marge interne
+        badge.setFont(new Font("Arial", Font.PLAIN, 14));
+        badge.setForeground(COLOR_TEXT_LIGHT);
+        badge.setOpaque(true);
+        badge.setBackground(COLOR_CARD_BACKGROUND);
+
+        badge.setBorder(BorderFactory.createLineBorder(new Color(60, 60, 60), 1));
+        return badge;
+    }
+
+    private JLabel createAvis(Avis avis) {
+        JLabel badge = new JLabel(" " + avis.getCommentaire() + "  "); // Espaces pour simuler la marge interne
         badge.setFont(new Font("Arial", Font.PLAIN, 14));
         badge.setForeground(COLOR_TEXT_LIGHT);
         badge.setOpaque(true);

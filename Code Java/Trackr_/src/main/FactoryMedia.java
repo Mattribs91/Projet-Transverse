@@ -58,29 +58,6 @@ public class FactoryMedia {
         Film filmcute4 = new Film(new ArrayList<>(), Categorie.ROMANCE, "La La Land", new Date(116, 11, 9), "Damien Chazelle");
         Film filmcute5 = new Film(new ArrayList<>(), Categorie.ROMANCE, "Before Sunrise", new Date(95, 0, 27), "Richard Linklater");
 
-        Avis avisSelma1 = new Avis(getSelma(),
-                filmcute2,
-                new Date(126, 7, 4),
-                "Ce film m'a trop fait pleurer... Mon chien et moi avons passé des soirees memorable... ",
-                5);
-
-        Avis avisSelma2 = new Avis(getSelma(),
-                filmcute4,
-                new Date(126, 8, 1),
-                "Ils sont trop trop mignonnnnn !!!! <3 <3 <3 ",
-                5);
-
-        Avis avisSelma3 = new Avis(getSelma(),
-                filmcute4,
-                new Date(126, 6, 9),
-                "Pas mes gouts pour le coup... ",
-                5);
-
-        lesAvisDeToutLeMonde = new ArrayList<>();
-
-        lesAvisDeToutLeMonde.add(avisSelma1);
-        lesAvisDeToutLeMonde.add(avisSelma2);
-        lesAvisDeToutLeMonde.add(avisSelma3);
 
 
         mediaEnVrac = new ArrayList<>();
@@ -118,6 +95,38 @@ public class FactoryMedia {
 
         antoine.getFollower().add(selma);
 
+        Avis avisSelma1 = new Avis(getSelma(),
+                filmcute2,
+                new Date(126, 7, 4),
+                "Ce film m'a trop fait pleurer... Mon chien et moi avons passé des soirees memorable... ",
+                5);
+
+        Avis avisSelma2 = new Avis(getSelma(),
+                filmcute4,
+                new Date(126, 8, 1),
+                "Ils sont trop trop mignonnnnn !!!! <3 <3 <3 ",
+                5);
+
+        Avis avisSelma3 = new Avis(getSelma(),
+                filmcute4,
+                new Date(126, 6, 9),
+                "Pas mes gouts pour le coup... ",
+                5);
+
+        lesAvisDeToutLeMonde = new ArrayList<>();
+
+        lesAvisDeToutLeMonde.add(avisSelma1);
+        lesAvisDeToutLeMonde.add(avisSelma2);
+        lesAvisDeToutLeMonde.add(avisSelma3);
+    }
+
+
+    public List<Media> getMediaEnVrac() {
+        return mediaEnVrac;
+    }
+
+    public List<Avis> getLesAvisDeToutLeMonde() {
+        return lesAvisDeToutLeMonde;
     }
 
     public static void main(String[] args) {
