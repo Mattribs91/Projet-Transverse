@@ -2,6 +2,7 @@ package vue;
 
 import models.user.Playlist;
 import models.user.User;
+import utils.WrapLayout;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -34,6 +35,7 @@ public class PlaylistsView extends JPanel{
         scrollPane.setBackground(COLOR_BACKGROUND_DARK);
         scrollPane.getViewport().setBackground(COLOR_BACKGROUND_DARK);
         scrollPane.getVerticalScrollBar().setUnitIncrement(16); // Rendre le défilement plus fluide
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
         this.add(scrollPane);
     }
@@ -45,7 +47,7 @@ public class PlaylistsView extends JPanel{
         // On fixe une hauteur max pour éviter que le header ne s'étire verticalement
         headerPanel.setMaximumSize(new Dimension(2000, 60));
 
-        // --- Partie Gauche : Titre et Compteur ---
+        // Titre et Compteur
         JPanel leftPanel = new JPanel();
         leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
         leftPanel.setBackground(COLOR_BACKGROUND_DARK);
@@ -62,7 +64,7 @@ public class PlaylistsView extends JPanel{
         leftPanel.add(titleLabel);
         leftPanel.add(countLabel);
 
-        // --- Partie Droite : Bouton Créer ---
+        // Bouton "Creer"
         JButton btnCreate = new JButton("+ CRÉER UNE LISTE");
         btnCreate.setFocusPainted(false);
         btnCreate.setBackground(COLOR_ACCENT_GREEN);
@@ -71,12 +73,10 @@ public class PlaylistsView extends JPanel{
         btnCreate.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btnCreate.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
 
-        // Panel pour aligner le bouton verticalement au centre
+        //allignement et assemblage
         JPanel rightPanel = new JPanel(new GridBagLayout());
         rightPanel.setBackground(COLOR_BACKGROUND_DARK);
         rightPanel.add(btnCreate);
-
-        // Assemblage
         headerPanel.add(leftPanel, BorderLayout.WEST);
         headerPanel.add(rightPanel, BorderLayout.EAST);
 
@@ -87,7 +87,7 @@ public class PlaylistsView extends JPanel{
     private JPanel createPlaylistsGrid() {
         // FlowLayout permet aux éléments de se placer les uns après les autres
         // et de passer à la ligne suivante si la fenêtre est trop petite.
-        JPanel gridPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 25, 25));
+        JPanel gridPanel = new JPanel(new WrapLayout(FlowLayout.LEFT, 25, 25));
         gridPanel.setBackground(COLOR_BACKGROUND_DARK);
 
         // Si l'utilisateur a des playlists, on les génère
