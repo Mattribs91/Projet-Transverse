@@ -2,6 +2,7 @@ package controller;
 
 import main.FactoryMedia;
 import vue.FactoryView;
+import vue.PlaylistsView;
 import vue.UserView;
 
 import javax.swing.*;
@@ -50,6 +51,20 @@ public class FactoryController {
             FactoryView factoryview = new FactoryView(FactoryMedia.getFactoryMedia(), false);
 
             center.add(factoryview, BorderLayout.CENTER);
+
+            center.revalidate();
+            center.repaint();
+        });
+    }
+
+    public static void openViewPlaylist(JButton button, JPanel jPanel){
+        button.addActionListener(e -> {
+            JPanel center = jPanel;
+            center.removeAll();
+
+            PlaylistsView playlistPage = new PlaylistsView(FactoryMedia.getFactoryMedia().getSelma());
+
+            center.add(playlistPage, BorderLayout.CENTER);
 
             center.revalidate();
             center.repaint();

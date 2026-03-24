@@ -7,6 +7,7 @@ import vue.FactoryView;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class FactoryMedia {
 
@@ -44,7 +45,17 @@ public class FactoryMedia {
         Playlist playlist_7 = new Playlist(new ArrayList<>(), "Playlist n7", new Date(), false, jordan);
         Playlist playlist_8 = new Playlist(new ArrayList<>(), "Playlist n8", new Date(), false, jordan);
 
-        selma = new User(null, null, "Selma Syone", "Selma.Syone@gmail.com", new ArrayList<>(), new ArrayList<>(), playlist_1, playlist_2);
+        List mesPlaylist = new ArrayList<Playlist>();
+        mesPlaylist.add(playlist_1);
+        mesPlaylist.add(playlist_2);
+        mesPlaylist.add(playlist_3);
+        mesPlaylist.add(playlist_4);
+        mesPlaylist.add(playlist_5);
+        mesPlaylist.add(playlist_6);
+        mesPlaylist.add(playlist_7);
+        mesPlaylist.add(playlist_8);
+
+        selma = new User(null, mesPlaylist, "Selma Syone", "Selma.Syone@gmail.com", new ArrayList<>(), new ArrayList<>(), playlist_1, playlist_2);
         antoine = new User(null, null, "Antoine Stadler", "AntoineStadler@gmail.com", new ArrayList<>(), new ArrayList<>(), playlist_3, playlist_4);
 
         alana = new User(null, null, "Alana Babibel", "alanabibeldu92@gmail.com", new ArrayList<>(), new ArrayList<>(), playlist_5, playlist_6);
