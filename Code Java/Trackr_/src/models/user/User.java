@@ -18,6 +18,7 @@ public class User {
         this.pseudo = pseudo;
         this.mail = mail;
         this.follower = follower;
+        this.suivi = suivi;
     }
 
     public List<Avis> getSesAvis() {

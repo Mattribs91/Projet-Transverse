@@ -28,7 +28,6 @@ public class FactoryMedia {
     public static FactoryView factoryview;
 
     public FactoryMedia() {
-        factoryMedia = this;
 
         JFrame frame = new JFrame("Trackr");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -39,6 +38,7 @@ public class FactoryMedia {
         frame.setVisible(true);
 
         factoryview = accueilView;
+        factoryMedia = this;
 
         Playlist playlist_1 = new Playlist(new ArrayList<>(), "Mes Films trop trop <3", new Date(), false, selma);
         Playlist playlist_2 = new Playlist(new ArrayList<>(), "Playlist n2", new Date(), false, selma);
@@ -76,7 +76,7 @@ public class FactoryMedia {
         mesPlaylist.add(playlist_7);
         mesPlaylist.add(playlist_8);
 
-        selma = new User(null, mesPlaylist, "Selma Syone", "Selma.Syone@gmail.com", new ArrayList<>(), new ArrayList<>());
+        selma = new User(new ArrayList<>(), mesPlaylist, "Selma Syone", "Selma.Syone@gmail.com", new ArrayList<>(), new ArrayList<>());
         antoine = new User(null, null, "Antoine Stadler", "AntoineStadler@gmail.com", new ArrayList<>(), new ArrayList<>());
 
         alana = new User(null, null, "Alana Babibel", "alanabibeldu92@gmail.com", new ArrayList<>(), new ArrayList<>());
@@ -113,6 +113,7 @@ public class FactoryMedia {
         selma.getSesAvis().add(avisSelma1);
         selma.getSesAvis().add(avisSelma2);
         selma.getSesAvis().add(avisSelma3);
+
     }
 
 
