@@ -10,9 +10,10 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
+// Vue globale du profil utilisateur
 public class UserView extends JPanel {
 
-    // Couleurs du thème
+    // Constantes pour le thème sombre (pour pas hardcoder les couleurs partout)
     private static final Color COLOR_BACKGROUND_DARK = new Color(18, 22, 28);
     private static final Color COLOR_CARD_BACKGROUND = new Color(30, 35, 43);
     private static final Color COLOR_TEXT_LIGHT = new Color(230, 230, 230);
@@ -24,47 +25,50 @@ public class UserView extends JPanel {
     public UserView(User user) {
         this.user = user;
 
-        // On utilise un BorderLayout pour le panel principal afin d'y mettre le ScrollPane
+        // Configuration de base du panel
         this.setLayout(new BorderLayout());
         this.setBackground(COLOR_BACKGROUND_DARK);
 
-        // --- PANEL CONTENU (Celui qui va défiler) ---
+        // Panel principal qui va contenir tous les éléments empilés
         JPanel contentPanel = new JPanel();
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
         contentPanel.setBackground(COLOR_BACKGROUND_DARK);
         contentPanel.setBorder(new EmptyBorder(30, 40, 40, 40));
 
-        // 1. En-tête
+        // Ajout des différentes sections avec un peu d'espace entre elles
         contentPanel.add(createHeaderSection(user));
         contentPanel.add(Box.createVerticalStrut(40));
 
-        // 2. Abonnements
         contentPanel.add(createSectionTitle("Mes Abonnements"));
         contentPanel.add(createAbonnementsSection());
         contentPanel.add(Box.createVerticalStrut(40));
 
+        // Section des avis
         contentPanel.add(createDernierAvis());
 
+        // Section des playlists
         contentPanel.add(createSectionTitle("Mes Playlists"));
         contentPanel.add(createPlaylistPerso());
         contentPanel.add(Box.createVerticalStrut(40));
 
-
+        // On met tout ça dans un ScrollPane pour pouvoir scroller
         JScrollPane scrollPane = new JScrollPane(contentPanel);
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
-        scrollPane.getVerticalScrollBar().setUnitIncrement(16);
+        scrollPane.getVerticalScrollBar().setUnitIncrement(16); // Scroll plus fluide
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.getViewport().setBackground(COLOR_BACKGROUND_DARK);
 
         this.add(scrollPane, BorderLayout.CENTER);
     }
 
+    // Génère le haut du profil : Avatar, Pseudo et les 3 stats
     private JPanel createHeaderSection(User user) {
         JPanel headerPanel = new JPanel(new BorderLayout());
         headerPanel.setBackground(COLOR_BACKGROUND_DARK);
-        headerPanel.setMaximumSize(new Dimension(1200, 120));
+        headerPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 120));
         headerPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
+        // Partie gauche : Avatar + Texte
         JPanel infoPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 20, 0));
         infoPanel.setBackground(COLOR_BACKGROUND_DARK);
 
@@ -95,6 +99,7 @@ public class UserView extends JPanel {
         infoPanel.add(avatar);
         infoPanel.add(textInfoPanel);
 
+        // Partie droite : Les stats
         JPanel statsPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 30, 20));
         statsPanel.setBackground(COLOR_BACKGROUND_DARK);
 
@@ -108,9 +113,14 @@ public class UserView extends JPanel {
         return headerPanel;
     }
 
+    // Affiche les badges des personnes suivies (avec le trick du wrap responsive)
     private JPanel createAbonnementsSection() {
-        // Changement : FlowLayout.LEFT pour aligner les badges à gauche
-        JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT, 15, 0));
+        JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT, 15, 10)) {
+            @Override
+            public Dimension getMaximumSize() {
+                return new Dimension(Integer.MAX_VALUE, getPreferredSize().height);
+            }
+        };
         panel.setBackground(COLOR_BACKGROUND_DARK);
         panel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
@@ -120,20 +130,27 @@ public class UserView extends JPanel {
         return panel;
     }
 
+    // Affiche max 4 playlists et un bouton "Voir plus" si besoin
     private JPanel createPlaylistPerso() {
-        // Changement : FlowLayout.LEFT pour aligner les playlists proprement
-        JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT, 15, 0));
+        JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT, 15, 15)) {
+            @Override
+            public Dimension getMaximumSize() {
+                return new Dimension(Integer.MAX_VALUE, getPreferredSize().height);
+            }
+        };
         panel.setBackground(COLOR_BACKGROUND_DARK);
         panel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         var playlists = this.user.getMesPlaylists();
 
+        // On se limite à 4 éléments
         playlists.stream()
                 .limit(4)
                 .forEach(playlist -> {
                     panel.add(createPlaylistItem(playlist));
                 });
 
+        // Bouton pour afficher la suite si on dépasse 4
         if (playlists.size() > 4) {
             JButton btnVoirPlus = new JButton("Voir plus");
             btnVoirPlus.setFont(new Font("Arial", Font.BOLD, 14));
@@ -141,19 +158,19 @@ public class UserView extends JPanel {
             btnVoirPlus.setBackground(COLOR_CARD_BACKGROUND);
             btnVoirPlus.setFocusPainted(false);
             btnVoirPlus.setCursor(new Cursor(Cursor.HAND_CURSOR));
-            btnVoirPlus.setPreferredSize(new Dimension(150, 50)); // Taille fixe pour le bouton
+            btnVoirPlus.setPreferredSize(new Dimension(150, 50));
 
             btnVoirPlus.setBorder(BorderFactory.createCompoundBorder(
                     BorderFactory.createLineBorder(new Color(60, 60, 60), 1),
                     new EmptyBorder(10, 20, 10, 20)
             ));
 
-            // Le panel contenant le bouton est un peu descendu pour s'aligner avec le texte des playlists
-            JPanel btnWrapper = new JPanel();
+            JPanel btnWrapper = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
             btnWrapper.setBackground(COLOR_BACKGROUND_DARK);
             btnWrapper.setBorder(new EmptyBorder(80, 20, 0, 0));
             btnWrapper.add(btnVoirPlus);
 
+            // Redirection via le controller
             UserController.openViewPlaylist(btnVoirPlus, this);
 
             panel.add(btnWrapper);
@@ -162,12 +179,15 @@ public class UserView extends JPanel {
         return panel;
     }
 
+    // Affiche la liste des critiques laissées par l'utilisateur
     private JPanel createDernierAvis() {
         JPanel container = new JPanel();
         container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
         container.setBackground(COLOR_BACKGROUND_DARK);
         container.setAlignmentX(Component.LEFT_ALIGNMENT);
+        container.setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE));
 
+        // Récupère le nombre total d'avis
         long countAvis = FactoryMedia.getFactoryMedia()
                 .getLesAvisDeToutLeMonde()
                 .stream()
@@ -177,24 +197,30 @@ public class UserView extends JPanel {
         container.add(createSectionTitle("Mes Derniers avis (" + countAvis + ")"));
         container.add(Box.createRigidArea(new Dimension(0, 15)));
 
+        // Ajoute chaque avis sous forme de carte
         FactoryMedia.getFactoryMedia().getLesAvisDeToutLeMonde().stream()
                 .filter(avis -> avis != null && avis.getCreateur() != null)
                 .filter(avis -> avis.getCreateur().equals(user))
                 .forEach(avis -> {
                     container.add(createCarteCritique(avis));
-                    container.add(Box.createRigidArea(new Dimension(0, 15))); // Espace entre chaque avis
+                    container.add(Box.createRigidArea(new Dimension(0, 15)));
                 });
 
         return container;
     }
 
+    // Composant UI : Une carte de playlist (Image + Titre + Compteur)
     private JPanel createPlaylistItem(Playlist playlist) {
         JPanel card = new JPanel();
         card.setLayout(new BoxLayout(card, BoxLayout.Y_AXIS));
         card.setBackground(COLOR_BACKGROUND_DARK);
-        card.setPreferredSize(new Dimension(200, 260));
+        Dimension cardSize = new Dimension(200, 260);
+        card.setPreferredSize(cardSize);
+        card.setMinimumSize(cardSize);
+        card.setMaximumSize(cardSize);
 
-        JLabel imagePlaceholder = new JLabel("\uD83D\uDCFD\uFE0F", SwingConstants.CENTER); // Une note de musique au lieu d'un clin d'oeil
+        // Fausse image de couverture
+        JLabel imagePlaceholder = new JLabel("\uD83D\uDCFD\uFE0F", SwingConstants.CENTER);
         imagePlaceholder.setFont(new Font("Arial", Font.PLAIN, 50));
         imagePlaceholder.setOpaque(true);
         imagePlaceholder.setBackground(COLOR_CARD_BACKGROUND);
@@ -226,15 +252,17 @@ public class UserView extends JPanel {
         return card;
     }
 
+    // Composant UI : La carte détaillée pour un avis (Infos film à gauche, avis à droite)
     private JPanel createCarteCritique(Avis avis) {
         Media media = avis.getMediaAssocie();
 
         JPanel card = new JPanel(new BorderLayout(20, 0));
         card.setBackground(COLOR_CARD_BACKGROUND);
         card.setBorder(new EmptyBorder(15, 15, 15, 15));
-        card.setMaximumSize(new Dimension(1200, 200));
-        card.setAlignmentX(Component.LEFT_ALIGNMENT); // Important pour l'alignement dans le BoxLayout
+        card.setMaximumSize(new Dimension(Integer.MAX_VALUE, 200));
+        card.setAlignmentX(Component.LEFT_ALIGNMENT);
 
+        // Colonne de gauche (Infos du média)
         JPanel filmPanel = new JPanel();
         filmPanel.setLayout(new BoxLayout(filmPanel, BoxLayout.Y_AXIS));
         filmPanel.setBackground(COLOR_CARD_BACKGROUND);
@@ -262,6 +290,7 @@ public class UserView extends JPanel {
         filmPanel.add(Box.createRigidArea(new Dimension(0, 15)));
         filmPanel.add(catLabel);
 
+        // Colonne de droite (Note et commentaire)
         JPanel avisPanel = new JPanel(new BorderLayout(0, 10));
         avisPanel.setBackground(COLOR_CARD_BACKGROUND);
 
@@ -287,16 +316,17 @@ public class UserView extends JPanel {
         return card;
     }
 
+    // Helper : Formate rapidement les titres de section
     private JLabel createSectionTitle(String title) {
         JLabel label = new JLabel(title);
         label.setFont(new Font("Arial", Font.BOLD, 22));
         label.setForeground(COLOR_TEXT_LIGHT);
         label.setAlignmentX(Component.LEFT_ALIGNMENT);
-        // Une bordure vide en bas sert de marge avec le contenu en dessous
         label.setBorder(new EmptyBorder(0, 0, 10, 0));
         return label;
     }
 
+    // Helper : Formate les blocs chiffres/texte du header
     private JPanel createStatItem(String number, String text) {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -317,6 +347,7 @@ public class UserView extends JPanel {
         return panel;
     }
 
+    // Helper : Formate les petits encarts d'abonnements
     private JLabel createBadge(String text) {
         JLabel badge = new JLabel(" @" + text + "  ");
         badge.setFont(new Font("Arial", Font.PLAIN, 14));
