@@ -24,6 +24,8 @@ public class FactoryView extends JPanel {
     private JButton btnAccueil;
     private JButton btnProfil;
     private JButton btnCoupsDeCoeur;
+    private JButton btnFilmVu;
+    private JButton btnMesListes;
     private JButton btnParametres;
 
     private JTextField searchField;
@@ -62,10 +64,14 @@ public class FactoryView extends JPanel {
         btnAccueil = createSidebarButton("Accueil");
         btnProfil = createSidebarButton("Mon Profil");
         btnCoupsDeCoeur = createSidebarButton("Coups de cœur");
+        btnFilmVu = createSidebarButton("Films Vu");
+        btnMesListes = createSidebarButton("Mes Listes");
 
         sidebarPanel.add(btnAccueil);
         sidebarPanel.add(btnProfil);
         sidebarPanel.add(btnCoupsDeCoeur);
+        sidebarPanel.add(btnFilmVu);
+        sidebarPanel.add(btnMesListes);
         sidebarPanel.add(Box.createRigidArea(new Dimension(0, 25)));
 
 
@@ -164,6 +170,9 @@ public class FactoryView extends JPanel {
     public JButton getBtnAccueil() { return btnAccueil; }
     public JButton getBtnProfil() { return btnProfil; }
     public JButton getBtnCoupsDeCoeur() { return btnCoupsDeCoeur; }
+    public JButton getBtnFilmVu() {return btnFilmVu;}
+    public JButton getBtnMesListes() {return btnMesListes;}
+
     public JButton getBtnParametres() { return btnParametres; }
 
     public JTextField getSearchField() { return searchField; }

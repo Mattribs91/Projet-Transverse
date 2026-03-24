@@ -1,10 +1,12 @@
 package main;
 
 import models.media.Film;
+import models.user.Playlist;
 import models.user.User;
 import vue.FactoryView;
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class FactoryMedia {
 
@@ -33,11 +35,20 @@ public class FactoryMedia {
 
         factoryview = accueilView;
 
-        selma = new User(null, null, "Selma Syone", "Selma.Syone@gmail.com", new ArrayList<>(), new ArrayList<>());
-        antoine = new User(null, null, "Antoine Stadler", "AntoineStadler@gmail.com", new ArrayList<>(), new ArrayList<>());
+        Playlist playlist_1 = new Playlist(new ArrayList<>(), "Playlist n1", new Date(), false, selma);
+        Playlist playlist_2 = new Playlist(new ArrayList<>(), "Playlist n2", new Date(), false, selma);
+        Playlist playlist_3 = new Playlist(new ArrayList<>(), "Playlist n3", new Date(), false, antoine);
+        Playlist playlist_4 = new Playlist(new ArrayList<>(), "Playlist n4", new Date(), false, antoine);
+        Playlist playlist_5 = new Playlist(new ArrayList<>(), "Playlist n5", new Date(), false, alana);
+        Playlist playlist_6 = new Playlist(new ArrayList<>(), "Playlist n6", new Date(), false, alana);
+        Playlist playlist_7 = new Playlist(new ArrayList<>(), "Playlist n7", new Date(), false, jordan);
+        Playlist playlist_8 = new Playlist(new ArrayList<>(), "Playlist n8", new Date(), false, jordan);
 
-        alana = new User(null, null, "Alana Babibel", "alanabibeldu92@gmail.com", new ArrayList<>(), new ArrayList<>());
-        jordan = new User(null, null, "Jordan Bartoila", "jordinooooooo@yahou.com", new ArrayList<>(), new ArrayList<>());
+        selma = new User(null, null, "Selma Syone", "Selma.Syone@gmail.com", new ArrayList<>(), new ArrayList<>(), playlist_1, playlist_2);
+        antoine = new User(null, null, "Antoine Stadler", "AntoineStadler@gmail.com", new ArrayList<>(), new ArrayList<>(), playlist_3, playlist_4);
+
+        alana = new User(null, null, "Alana Babibel", "alanabibeldu92@gmail.com", new ArrayList<>(), new ArrayList<>(), playlist_5, playlist_6);
+        jordan = new User(null, null, "Jordan Bartoila", "jordinooooooo@yahou.com", new ArrayList<>(), new ArrayList<>(), playlist_7, playlist_8);
 
 
 

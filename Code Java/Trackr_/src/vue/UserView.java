@@ -68,9 +68,9 @@ public class UserView extends JPanel {
         JPanel statsPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 30, 20));
         statsPanel.setBackground(COLOR_BACKGROUND_DARK);
 
-        statsPanel.add(createStatItem("0", "VUS"));
+        statsPanel.add(createStatItem(user.getVu().getLesMedias().size() + " ", "VUS"));
         statsPanel.add(createStatItem(user.getFollower().size() +" ", "FOLLOWER"));
-        statsPanel.add(createStatItem(user.getSuivi().size() + "", "SUIVIS"));
+        statsPanel.add(createStatItem(user.getSuivi().size() + " ", "SUIVIS"));
 
         headerPanel.add(infoPanel, BorderLayout.WEST);
         headerPanel.add(statsPanel, BorderLayout.EAST);
