@@ -37,10 +37,10 @@ build-job:
 
 pages:
   stage: deploy
-  image: python:3.11-slim
+  image: maven:3.9-eclipse-temurin-17
   before_script:
-    - apt-get update && apt-get install -y openjdk-17-jdk maven
-    - pip install mkdocs-material
+    - apt-get update && apt-get install -y python3 python3-pip
+    - pip3 install mkdocs-material --break-system-packages
   script:
     - cd "Code Java/Trackr"
     - mvn javadoc:javadoc
