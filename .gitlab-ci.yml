@@ -10,6 +10,7 @@ cache:
 stages:
   - test
   - build
+  - deploy
 
 test-job:
   stage: test
@@ -18,6 +19,10 @@ test-job:
     - mvn test
     - awk -F"," '{ instructions += $4 + $5; covered += $5 } END { print covered, "/", instructions, " instructions covered"; print 100*covered/instructions, "% covered" }' target/site/jacoco/jacoco.csv
   coverage: '/(\d+\.?\d*) \% covered/'
+  artifacts:
+    paths:
+      - "Code Java/Trackr/target/site/jacoco/"
+    expire_in: 1 day
 
 build-job:
   stage: build
@@ -29,3 +34,17 @@ build-job:
     name: "trackr-app-$CI_COMMIT_REF_NAME"
     paths:
       - trackr-app.jar
+
+pages:
+  stage: deploy
+  script:
+    - cd "Code Java/Trackr"
+    - mvn javadoc:javadoc
+    - mkdir ../../public
+    - cp -r target/site/apidocs/* ../../public/
+  artifacts:
+    paths:
+      - public
+  only:
+    - main
+    - master

@@ -1,6 +1,21 @@
 # TRACKR - Projet Transverse
 
+[![coverage report](https://git.iut-orsay.fr/tchass2/s2-sae-dev-app-ef3/badges/main/coverage.svg)](https://git.iut-orsay.fr/tchass2/s2-sae-dev-app-ef3/-/commits/main)
+
 Bienvenue sur le dépôt du projet **Trackr**.
+
+## Équipe du projet
+- **Charline Percheron**
+- **Karen Reboulet**
+- **Matthéo Ribeiro**
+- **Raphaël Mouatt**
+- **Thomas Chassang**
+
+## Liens utiles
+- [Documentation Javadoc (en ligne)](https://tchass2.gitlab.iut-orsay.fr/s2-sae-dev-app-ef3/)
+- [Guide de contribution](CONTRIBUTING.md)
+- [Historique des versions](CHANGELOG.md)
+- [Licence MIT](LICENSE)
 
 ## Organisation du projet
 
