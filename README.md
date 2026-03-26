@@ -1,7 +1,5 @@
 # TRACKR - Projet Transverse
 
-[![pipeline status](https://git.iut-orsay.fr/tchass2/s2-sae-dev-app-ef3/badges/main/pipeline.svg)](https://git.iut-orsay.fr/tchass2/s2-sae-dev-app-ef3/-/commits/main)
-
 Bienvenue sur le dépôt du projet **Trackr**.
 
 ## Organisation du projet
