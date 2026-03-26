@@ -19,12 +19,20 @@ Ce projet utilise désormais **Maven** pour la gestion des dépendances et la co
 - Maven 3.8+ (Optionnel si vous utilisez un IDE récent)
 - IntelliJ IDEA, Eclipse ou VSCode
 
-### Ouvrir le projet dans IntelliJ IDEA ou Eclipse
-1. Ouvrez votre IDE.
-2. Allez dans **File > Open...** (ou **Import...**).
-3. Sélectionnez le fichier **`pom.xml`** (situé dans `Code Java/Trackr/pom.xml`).
-4. Choisissez **Open as Project** (ou importer comme projet Maven).
-L'IDE s'occupera automatiquement de télécharger les librairies (JUnit) et de configurer le projet pour vous !
+### Ouvrir le projet dans IntelliJ IDEA
+1. Ouvrez IntelliJ IDEA.
+2. Allez dans **File > Open...**.
+3. Sélectionnez le fichier **`pom.xml`** situé dans le dossier `Code Java/Trackr/`.
+4. Cliquez sur **Open as Project**.
+5. IntelliJ téléchargera automatiquement les dépendances Maven (comme JUnit) et configurera le projet.
+
+### Ouvrir le projet dans Eclipse
+1. Ouvrez Eclipse.
+2. Allez dans **File > Import...**.
+3. Dépliez le dossier **Maven** et sélectionnez **Existing Maven Projects**.
+4. Cliquez sur **Next** et choisissez le dossier `Code Java/Trackr/` dans "Root Directory".
+5. Assurez-vous que le fichier `pom.xml` est coché dans la liste.
+6. Cliquez sur **Finish**. Eclipse configurera le projet Java automatiquement.
 
 ### Compilation & Lancement en ligne de commande (Alternative)
 Si vous souhaitez compiler et générer le fichier exécutable vous-même via un terminal :
