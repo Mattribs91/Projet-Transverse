@@ -10,8 +10,8 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import static vue.FactoryView.COLOR_ACCENT_GREEN;
-import static vue.FactoryView.COLOR_TEXT_LIGHT;
+import static utils.Utils.COLOR_ACCENT_GREEN;
+import static utils.Utils.COLOR_TEXT_LIGHT;
 
 public class FactoryController {
 
