@@ -8,21 +8,22 @@ theme:
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: indigo
-      accent: indigo
+      primary: deep purple
+      accent: deep purple
       toggle:
         icon: material/brightness-7
         name: Passer au mode sombre
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: indigo
-      accent: indigo
+      primary: deep purple
+      accent: deep purple
       toggle:
         icon: material/brightness-4
         name: Passer au mode clair
   features:
     - navigation.tabs
     - navigation.top
+    - navigation.sections
     - search.suggest
     - search.highlight
     - content.code.copy
@@ -30,7 +31,7 @@ theme:
 nav:
   - Accueil: index.md
   - Guide de contribution: contributing.md
-  - Historique (Changelog): changelog.md
+  - Historique: changelog.md
 
 markdown_extensions:
   - admonition
