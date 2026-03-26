@@ -26,6 +26,6 @@ build-job:
     - mvn clean package -DskipTests
     - cp target/trackr-app-*.jar ../../trackr-app.jar
   artifacts:
-    name: "trackr-app"
+    name: "trackr-app-$CI_COMMIT_REF_NAME"
     paths:
       - trackr-app.jar

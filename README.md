@@ -24,7 +24,7 @@ Ce projet utilise désormais **Maven** pour la gestion des dépendances et la co
 2. Allez dans **File > Open...**.
 3. Sélectionnez le fichier **`pom.xml`** situé dans le dossier `Code Java/Trackr/`.
 4. Cliquez sur **Open as Project**.
-5. IntelliJ téléchargera automatiquement les dépendances Maven (comme JUnit) et configurera le projet.
+5. IntelliJ configurera automatiquement le projet Java via Maven.
 
 ### Ouvrir le projet dans Eclipse
 1. Ouvrez Eclipse.
