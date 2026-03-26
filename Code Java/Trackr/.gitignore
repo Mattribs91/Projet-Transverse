@@ -1,5 +1,6 @@
 # Build artifacts
 bin/
+target/
 *.class
 
 # Eclipse
