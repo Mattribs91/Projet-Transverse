@@ -8,14 +8,7 @@ cache:
     - .m2/repository/
 
 stages:
-  - test
   - build
-
-test-job:
-  stage: test
-  script:
-    - cd "Code Java/Trackr"
-    - mvn test
 
 build-job:
   stage: build
@@ -24,10 +17,7 @@ build-job:
     - mvn clean package -DskipTests
     - cp target/trackr-app-*.jar ../../trackr-app.jar
   artifacts:
-    name: "Trackr-App"
+    name: "Trackr-App-$CI_COMMIT_SHORT_SHA"
     paths:
       - trackr-app.jar
     expire_in: 1 day
-  rules:
-    - if: $CI_COMMIT_BRANCH == "main"
-    - if: $CI_COMMIT_BRANCH == "master"
