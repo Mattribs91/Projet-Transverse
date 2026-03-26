@@ -37,14 +37,23 @@ build-job:
 
 pages:
   stage: deploy
+  image: python:3.11-slim
+  before_script:
+    - apt-get update && apt-get install -y openjdk-17-jdk maven
+    - pip install mkdocs-material
   script:
     - cd "Code Java/Trackr"
     - mvn javadoc:javadoc
-    - mkdir ../../public
-    - cp -r target/site/apidocs/* ../../public/
+    - cd ../..
+    - mkdir -p docs
+    - cp README.md docs/index.md
+    - cp CONTRIBUTING.md docs/contributing.md
+    - cp CHANGELOG.md docs/changelog.md
+    - mkdocs build -d public
+    - cp -r "Code Java/Trackr/target/site/apidocs" public/javadoc
   artifacts:
     paths:
       - public
-
-# Le job pages ne tourne plus que sur main pour éviter de saturer le serveur
-# mais on peut le réactiver sur toutes les branches si besoin.
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: $CI_COMMIT_BRANCH == "feature/maven-migration-trackr"

@@ -1,6 +1,6 @@
 # TRACKR - Projet Transverse
 
-[![coverage report](https://git.iut-orsay.fr/tchass2/s2-sae-dev-app-ef3/badges/feature/maven-migration-trackr/coverage.svg)](https://git.iut-orsay.fr/tchass2/s2-sae-dev-app-ef3/-/commits/feature/maven-migration-trackr)
+[![coverage report](https://git.iut-orsay.fr/tchass2/s2-sae-dev-app-ef3/badges/feature/maven-migration-trackr/coverage.svg)](https://git.iut-orsay.fr/tchass2/s2-sae-dev-app-ef3/-/pipelines)
 
 Bienvenue sur le dépôt du projet **Trackr**.
 
@@ -12,7 +12,7 @@ Bienvenue sur le dépôt du projet **Trackr**.
 - **Thomas Chassang**
 
 ## Liens utiles
-- [Documentation Javadoc (en ligne)](https://tchass2.gitlab.iut-orsay.fr/s2-sae-dev-app-ef3/)
+- [Documentation Javadoc (en ligne)](https://s2-sae-dev-app-ef3-4d50ba.gitpages.iut-orsay.fr/)
 - [Guide de contribution](CONTRIBUTING.md)
 - [Historique des versions](CHANGELOG.md)
 - [Licence MIT](LICENSE)
