@@ -15,7 +15,9 @@ build:
   script:
     - cd "Code Java/Trackr"
     - mvn clean package
+    - cp target/trackr-app-*.jar ../../trackr-app.jar
   artifacts:
+    name: "Trackr-App"
     paths:
-      - "Code Java/Trackr/target/*.jar"
-    expire_in: 1 week
+      - trackr-app.jar
+    expire_in: 1 day
