@@ -31,7 +31,6 @@ nav:
   - Accueil: index.md
   - Guide de contribution: contributing.md
   - Historique (Changelog): changelog.md
-  - Documentation Technique (Javadoc): javadoc/index.html
 
 markdown_extensions:
   - admonition

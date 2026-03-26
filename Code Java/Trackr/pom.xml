@@ -68,17 +68,6 @@
                     </execution>
                 </executions>
             </plugin>
-
-            <!-- Plugin Javadoc pour générer la doc en HTML5 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.6.3</version>
-                <configuration>
-                    <release>17</release>
-                    <additionalOptions>-html5</additionalOptions>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
 

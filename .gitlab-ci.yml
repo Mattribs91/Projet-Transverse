@@ -37,20 +37,16 @@ build-job:
 
 pages:
   stage: deploy
-  image: maven:3.9-eclipse-temurin-17
+  image: python:3.11-slim
   before_script:
-    - apt-get update && apt-get install -y python3 python3-pip
-    - pip3 install mkdocs-material --break-system-packages
+    - apt-get update && apt-get install -y python3-pip
+    - pip install mkdocs-material
   script:
-    - cd "Code Java/Trackr"
-    - mvn javadoc:javadoc
-    - cd ../..
     - mkdir -p docs
     - cp README.md docs/index.md
     - cp CONTRIBUTING.md docs/contributing.md
     - cp CHANGELOG.md docs/changelog.md
     - mkdocs build -d public
-    - cp -r "Code Java/Trackr/target/site/apidocs" public/javadoc
   artifacts:
     paths:
       - public

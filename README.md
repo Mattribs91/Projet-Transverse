@@ -12,7 +12,7 @@ Bienvenue sur le dépôt du projet **Trackr**.
 - **Thomas Chassang**
 
 ## Liens utiles
-- [Documentation Javadoc (en ligne)](https://s2-sae-dev-app-ef3-4d50ba.gitpages.iut-orsay.fr/)
+- [Site officiel du projet (Documentation)](https://s2-sae-dev-app-ef3-4d50ba.gitpages.iut-orsay.fr/)
 - [Guide de contribution](CONTRIBUTING.md)
 - [Historique des versions](CHANGELOG.md)
 - [Licence MIT](LICENSE)
