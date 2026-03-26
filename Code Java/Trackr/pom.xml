@@ -15,10 +15,13 @@
     </properties>
 
     <build>
+        <sourceDirectory>src</sourceDirectory>
+        <testSourceDirectory>tests</testSourceDirectory>
+
         <plugins>
             <!-- Plugin pour compiler le code -->
             <plugin>
-                <groupId>maven-plugins</groupId>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.11.0</version>
             </plugin>
