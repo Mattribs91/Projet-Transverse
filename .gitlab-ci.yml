@@ -45,6 +45,6 @@ pages:
   artifacts:
     paths:
       - public
-  only:
-    - main
-    - master
+
+# Le job pages ne tourne plus que sur main pour éviter de saturer le serveur
+# mais on peut le réactiver sur toutes les branches si besoin.

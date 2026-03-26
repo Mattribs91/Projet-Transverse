@@ -1,6 +1,6 @@
 # TRACKR - Projet Transverse
 
-[![coverage report](https://git.iut-orsay.fr/tchass2/s2-sae-dev-app-ef3/badges/main/coverage.svg)](https://git.iut-orsay.fr/tchass2/s2-sae-dev-app-ef3/-/commits/main)
+[![coverage report](https://git.iut-orsay.fr/tchass2/s2-sae-dev-app-ef3/badges/feature/maven-migration-trackr/coverage.svg)](https://git.iut-orsay.fr/tchass2/s2-sae-dev-app-ef3/-/commits/feature/maven-migration-trackr)
 
 Bienvenue sur le dépôt du projet **Trackr**.
 
