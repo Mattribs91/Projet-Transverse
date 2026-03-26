@@ -1,0 +1,21 @@
+image: maven:3.9-eclipse-temurin-17
+
+variables:
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
+
+cache:
+  paths:
+    - .m2/repository/
+
+stages:
+  - build
+
+build:
+  stage: build
+  script:
+    - cd "Code Java/Trackr"
+    - mvn clean package
+  artifacts:
+    paths:
+      - "Code Java/Trackr/target/*.jar"
+    expire_in: 1 week

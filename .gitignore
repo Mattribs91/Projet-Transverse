@@ -1,7 +1,11 @@
-# Build artifacts
-bin/
-target/
-*.class
+# VSCode
+.vscode/
+
+# IntelliJ
+.idea/
+*.iml
+*.iws
+*.eml
 
 # Eclipse
 .metadata/
@@ -11,14 +15,13 @@ RemoteSystemsTempFiles/
 .externalToolBuilders/
 *.launch
 .settings/
+.project
+.classpath
 
-# IntelliJ
-.idea/
-*.iws
-
-# VSCode
-.vscode/
-
+# Build artifacts
+bin/
+target/
+*.class
 
 # OS-specific
 .DS_Store
