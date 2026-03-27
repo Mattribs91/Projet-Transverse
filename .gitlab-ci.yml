@@ -42,6 +42,10 @@ pages:
     - apt-get update && apt-get install -y python3-pip
     - pip install mkdocs-material
   script:
+    - mkdir -p docs
+    - cp CONTRIBUTING.md docs/CONTRIBUTING.md
+    - cp CHANGELOG.md docs/CHANGELOG.md
+    - cp -r "Documents et Rendus" docs/
     - mkdocs build -d public
   artifacts:
     paths:

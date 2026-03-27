@@ -2,11 +2,11 @@ site_name: Trackr - Documentation officielle
 site_description: Documentation complète du projet Trackr (SAE-DEV)
 site_author: Équipe Trackr
 
-docs_dir: .
-
 theme:
   name: material
   language: fr
+  icon:
+    logo: material/movie-open-play
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
@@ -24,8 +24,11 @@ theme:
         name: Passer au mode clair
   features:
     - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.top
     - navigation.sections
+    - navigation.tracking
+    - toc.integrate
     - search.suggest
     - search.highlight
     - content.code.copy
