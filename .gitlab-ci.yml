@@ -42,10 +42,6 @@ pages:
     - apt-get update && apt-get install -y python3-pip
     - pip install mkdocs-material
   script:
-    - mkdir -p docs
-    - cp README.md docs/index.md
-    - cp CONTRIBUTING.md docs/contributing.md
-    - cp CHANGELOG.md docs/changelog.md
     - mkdocs build -d public
   artifacts:
     paths:

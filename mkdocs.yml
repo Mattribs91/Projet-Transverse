@@ -2,6 +2,8 @@ site_name: Trackr - Documentation officielle
 site_description: Documentation complète du projet Trackr (SAE-DEV)
 site_author: Équipe Trackr
 
+docs_dir: .
+
 theme:
   name: material
   language: fr
@@ -30,8 +32,11 @@ theme:
 
 nav:
   - Accueil: index.md
-  - Guide de contribution: contributing.md
-  - Historique: changelog.md
+  - 📂 Rendus du projet:
+      - Rendu 1: Documents et Rendus/Rendu 1/rendu1.md
+      - Rendu 2: Documents et Rendus/Rendu 2/rendu2.md
+  - 🛠️ Guide de contribution: CONTRIBUTING.md
+  - 🕒 Historique: CHANGELOG.md
 
 markdown_extensions:
   - admonition
@@ -41,3 +46,6 @@ markdown_extensions:
       anchor_linenums: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
