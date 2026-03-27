@@ -42,10 +42,14 @@ pages:
     - apt-get update && apt-get install -y python3-pip
     - pip install mkdocs-material
   script:
-    - mkdir -p docs
-    - cp CONTRIBUTING.md docs/CONTRIBUTING.md
-    - cp CHANGELOG.md docs/CHANGELOG.md
-    - cp -r "Documents et Rendus" docs/
+    - mkdir -p Documentation_Site/Rendu-1 Documentation_Site/Rendu-2
+    - cp CONTRIBUTING.md Documentation_Site/CONTRIBUTING.md
+    - cp CHANGELOG.md Documentation_Site/CHANGELOG.md
+    - cp "Documents et Rendus/Rendu 1/rendu1.md" Documentation_Site/Rendu-1/
+    - cp "Documents et Rendus/Rendu 1/Personas1.jpeg" Documentation_Site/Rendu-1/
+    - cp "Documents et Rendus/Rendu 1/Personas2.jpeg" Documentation_Site/Rendu-1/
+    - cp "Documents et Rendus/Rendu 2/rendu2.md" Documentation_Site/Rendu-2/
+    - cp "Documents et Rendus/Rendu 2/Screen UML.png" Documentation_Site/Rendu-2/
     - mkdocs build -d public
   artifacts:
     paths:

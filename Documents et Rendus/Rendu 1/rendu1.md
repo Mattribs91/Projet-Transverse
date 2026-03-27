@@ -15,3 +15,6 @@ Nous avons défini des profils types d'utilisateurs pour guider le développemen
   <img src="Personas1.jpeg" width="45%" />
   <img src="Personnas2.jpeg" width="45%" />
 </p>
+
+---
+[👉 Passer au Rendu 2](../Rendu%202/rendu2.md){ .md-button .md-button--primary }

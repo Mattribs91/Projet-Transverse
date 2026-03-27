@@ -26,3 +26,10 @@ target/
 # OS-specific
 .DS_Store
 Thumbs.db
+
+# MkDocs
+public/
+
+
+# Virtual Environment
+.venv/
