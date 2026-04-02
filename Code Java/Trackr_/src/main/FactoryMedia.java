@@ -23,13 +23,11 @@ public class FactoryMedia {
     User jordan;
 
     List<Media> mediaEnVrac;
-    List<Avis> lesAvisDeToutLeMonde;
 
     public static FactoryMedia factoryMedia;
     public static FactoryView factoryview;
 
     public FactoryMedia() {
-        factoryMedia = this;
 
         JFrame frame = new JFrame("Trackr");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -40,6 +38,7 @@ public class FactoryMedia {
         frame.setVisible(true);
 
         factoryview = accueilView;
+        factoryMedia = this;
 
         Playlist playlist_1 = new Playlist(new ArrayList<>(), "Mes Films trop trop <3", new Date(), false, selma);
         Playlist playlist_2 = new Playlist(new ArrayList<>(), "Playlist n2", new Date(), false, selma);
@@ -77,13 +76,11 @@ public class FactoryMedia {
         mesPlaylist.add(playlist_7);
         mesPlaylist.add(playlist_8);
 
-        selma = new User(null, mesPlaylist, "Selma Syone", "Selma.Syone@gmail.com", new ArrayList<>(), new ArrayList<>(), playlist_1, playlist_2);
-        antoine = new User(null, null, "Antoine Stadler", "AntoineStadler@gmail.com", new ArrayList<>(), new ArrayList<>(), playlist_3, playlist_4);
+        selma = new User(new ArrayList<>(), mesPlaylist, "Selma Syone", "Selma.Syone@gmail.com", new ArrayList<>(), new ArrayList<>());
+        antoine = new User(null, null, "Antoine Stadler", "AntoineStadler@gmail.com", new ArrayList<>(), new ArrayList<>());
 
-        alana = new User(null, null, "Alana Babibel", "alanabibeldu92@gmail.com", new ArrayList<>(), new ArrayList<>(), playlist_5, playlist_6);
-        jordan = new User(null, null, "Jordan Bartoila", "jordinooooooo@yahou.com", new ArrayList<>(), new ArrayList<>(), playlist_7, playlist_8);
-
-
+        alana = new User(null, null, "Alana Babibel", "alanabibeldu92@gmail.com", new ArrayList<>(), new ArrayList<>());
+        jordan = new User(null, null, "Jordan Bartoila", "jordinooooooo@yahou.com", new ArrayList<>(), new ArrayList<>());
 
         selma.getSuivi().add(antoine);
         selma.getSuivi().add(jordan);
@@ -105,19 +102,18 @@ public class FactoryMedia {
                 filmcute4,
                 new Date(126, 8, 1),
                 "Ils sont trop trop mignonnnnn !!!! <3 <3 <3 ",
-                5);
+                4);
 
         Avis avisSelma3 = new Avis(getSelma(),
-                filmcute4,
+                filmcute1,
                 new Date(126, 6, 9),
                 "Pas mes gouts pour le coup... ",
-                5);
+                2);
 
-        lesAvisDeToutLeMonde = new ArrayList<>();
+        selma.getSesAvis().add(avisSelma1);
+        selma.getSesAvis().add(avisSelma2);
+        selma.getSesAvis().add(avisSelma3);
 
-        lesAvisDeToutLeMonde.add(avisSelma1);
-        lesAvisDeToutLeMonde.add(avisSelma2);
-        lesAvisDeToutLeMonde.add(avisSelma3);
     }
 
 
@@ -125,9 +121,6 @@ public class FactoryMedia {
         return mediaEnVrac;
     }
 
-    public List<Avis> getLesAvisDeToutLeMonde() {
-        return lesAvisDeToutLeMonde;
-    }
 
     public static void main(String[] args) {
         new FactoryMedia();
