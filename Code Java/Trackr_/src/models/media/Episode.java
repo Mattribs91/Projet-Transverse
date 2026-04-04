@@ -23,6 +23,11 @@ public class Episode extends Media {
         this.duree = duree;
     }
 
+    @Override
+    public String toString() {
+        return "[ÉPISODE] S" + numeroDeSaison + " - " + super.getTitre() + " | Durée: " + duree;
+    }
+
     public Serie getSerieMere() {
         return this.serieMere;
     }

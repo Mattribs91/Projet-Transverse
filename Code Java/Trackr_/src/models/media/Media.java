@@ -22,6 +22,22 @@ public abstract class Media {
         this.realisateur = realisateur;
     }
 
+    public double getScoreMoyen() {
+        if (lesAvis == null || lesAvis.isEmpty()) {
+            return 0.0;
+        }
+        double somme = 0;
+        for (Avis avis : lesAvis) {
+            somme += avis.getNombreEtoiles();
+        }
+        return somme / lesAvis.size();
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s (%tY) - %s | Genre: %s | Note: %.1f/5 (%d avis)",
+                titre, date, realisateur, laCategorie, getScoreMoyen(), lesAvis != null ? lesAvis.size() : 0);
+    }
 
     public List<Avis> getLesAvis() {
         return this.lesAvis;

@@ -15,6 +15,11 @@ public class Serie extends Media {
         this.nombreEpisodes = nombreEpisodes;
     }
 
+    @Override
+    public String toString() {
+        return "[SÉRIE] " + super.toString() + " | Épisodes: " + nombreEpisodes;
+    }
+
     public List<Episode> getLesEpisodes() {
         return this.lesEpisodes;
     }

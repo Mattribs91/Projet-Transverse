@@ -16,6 +16,10 @@ public class Film extends Media {
         super(lesAvis, laCategorie, titre, date, realisateur);
     }
 
+    @Override
+    public String toString() {
+        return "[FILM] " + super.toString() + " | Durée: " + duree;
+    }
 
     public Film getFilmPrecedent() {
         return this.filmPrecedent;
