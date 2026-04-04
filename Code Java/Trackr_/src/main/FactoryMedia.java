@@ -49,7 +49,6 @@ public class FactoryMedia {
         Playlist playlist_7 = new Playlist(new ArrayList<>(), "Playlist n7", new Date(), false, jordan);
         Playlist playlist_8 = new Playlist(new ArrayList<>(), "Playlist n8", new Date(), false, jordan);
 
-
         //ajout de films de romance -> dans le but de creer une playlist de romance pour selma + ajout davis sur ceux ci
         Film filmcute1 = new Film(new ArrayList<>(), Categorie.ROMANCE, "About Time", new Date(113, 8, 4), "Richard Curtis");
         Film filmcute2 = new Film(new ArrayList<>(), Categorie.ROMANCE, "Past Lives", new Date(123, 5, 2), "Celine Song");
@@ -76,11 +75,11 @@ public class FactoryMedia {
         mesPlaylist.add(playlist_7);
         mesPlaylist.add(playlist_8);
 
-        selma = new User(new ArrayList<>(), mesPlaylist, "Selma Syone", "Selma.Syone@gmail.com", new ArrayList<>(), new ArrayList<>());
-        antoine = new User(null, null, "Antoine Stadler", "AntoineStadler@gmail.com", new ArrayList<>(), new ArrayList<>());
+        selma = new User(new ArrayList<>(), mesPlaylist, "Selma Syone", "Selma.Syone@gmail.com", new ArrayList<>(), new ArrayList<>(), playlist_1, playlist_2);
+        antoine = new User(null, null, "Antoine Stadler", "AntoineStadler@gmail.com", new ArrayList<>(), new ArrayList<>(), playlist_3, playlist_4);
 
-        alana = new User(null, null, "Alana Babibel", "alanabibeldu92@gmail.com", new ArrayList<>(), new ArrayList<>());
-        jordan = new User(null, null, "Jordan Bartoila", "jordinooooooo@yahou.com", new ArrayList<>(), new ArrayList<>());
+        alana = new User(null, null, "Alana Babibel", "alanabibeldu92@gmail.com", new ArrayList<>(), new ArrayList<>(), playlist_5, playlist_6);
+        jordan = new User(null, null, "Jordan Bartoila", "jordinooooooo@yahou.com", new ArrayList<>(), new ArrayList<>(), playlist_7, playlist_8);
 
         selma.getSuivi().add(antoine);
         selma.getSuivi().add(jordan);
