@@ -32,7 +32,7 @@ public class Avis {
 
     @Override
     public String toString() {
-        return createur.getPseudo() + " [" + nombreEtoiles + "★] : " + commentaire;
+        return createur.getPseudo() + " [" + nombreEtoiles + "étoiles : " + commentaire;
     }
 
     public User getCreateur() { return this.createur; }
