@@ -21,6 +21,33 @@ public class Playlist {
         this.createur = createur;
     }
 
+    public void ajouterMedia(Media media) {
+        if (!lesMedias.contains(media)) {
+            lesMedias.add(media);
+            System.out.println("O" + media.getTitre() + "' a été ajouté à la playlist '" + this.nom);
+        } else {
+            System.out.println("!!! Ce média est déjà dans la playlist !!!");
+        }
+    }
+
+    public void retirerMedia(Media media) {
+        if (lesMedias.remove(media)) {
+            System.out.println("X" + media.getTitre() + "' a été retiré de la playlist '" + this.nom);
+        }
+    }
+
+    public void afficherContenu() {
+        System.out.println("\n=== Playlist : " + nom + " (" + (estPrive ? "Privée" : "Publique") + ") ===");
+        if (lesMedias.isEmpty()) {
+            System.out.println("(Vide)");
+        } else {
+            for (Media m : lesMedias) {
+                System.out.println("---> " + m.getTitre());
+            }
+        }
+        System.out.println("===============================\n");
+    }
+
     public List<Media> getLesMedias() {
         return this.lesMedias;
     }

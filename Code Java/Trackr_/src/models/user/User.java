@@ -1,6 +1,9 @@
 package models.user;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import models.media.Media;
 
 public class User {
 
@@ -23,6 +26,45 @@ public class User {
         this.suivi = suivi;
         this.vu = vu;
         this.like = like;
+    }
+
+    public void follow(User cible) {
+        if (cible != null && cible != this && !this.suivi.contains(cible)) {
+            this.suivi.add(cible);
+            cible.getFollower().add(this);
+            System.out.println("==> " + this.pseudo + " a commencé à suivre " + cible.getPseudo());
+        }
+    }
+
+    public void unfollow(User cible) {
+        if (cible != null && this.suivi.contains(cible)) {
+            this.suivi.remove(cible);
+            cible.getFollower().remove(this);
+            System.out.println("==> " + this.pseudo + " ne suit plus " + cible.getPseudo());
+        }
+    }
+
+    public void creerNouvellePlaylist(String nomPlaylist, boolean estPrive) {
+        Playlist nouvelle = new Playlist(new ArrayList<>(), nomPlaylist, new Date(), estPrive, this);
+        this.mesPlaylists.add(nouvelle);
+        System.out.println("Playlist " + nomPlaylist + " créée avec succès par " + this.pseudo);
+    }
+
+    public void marquerCommeVu(Media media) {
+        this.vu.ajouterMedia(media);
+    }
+
+    public void ajouterAuxFavoris(Media media) {
+        this.like.ajouterMedia(media);
+    }
+
+    public void afficherProfil() {
+        System.out.println("\n--- PROFIL DE " + pseudo.toUpperCase() + " ---");
+        System.out.println("Email: " + mail);
+        System.out.println("Abonnements: " + suivi.size() + " | Abonnés: " + follower.size());
+        System.out.println("Médias vus: " + vu.getLesMedias().size());
+        System.out.println("Playlists créées: " + mesPlaylists.size());
+        System.out.println("----------------------------\n");
     }
 
     public List<Avis> getSesAvis() {

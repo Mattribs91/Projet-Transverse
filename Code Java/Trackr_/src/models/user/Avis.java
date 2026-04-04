@@ -20,9 +20,20 @@ public class Avis {
         this.nombreEtoiles = nombreEtoiles;
     }
 
+    public void publier() {
+        if (!mediaAssocie.getLesAvis().contains(this)) {
+            mediaAssocie.getLesAvis().add(this);
+        }
+        if (!createur.getSesAvis().contains(this)) {
+            createur.getSesAvis().add(this);
+        }
+        System.out.println("Avis publié par " + createur.getPseudo() + " sur '" + mediaAssocie.getTitre() + "' (" + nombreEtoiles + "/5)");
+    }
 
-
-
+    @Override
+    public String toString() {
+        return createur.getPseudo() + " [" + nombreEtoiles + "★] : " + commentaire;
+    }
 
     public User getCreateur() { return this.createur; }
 
