@@ -1,0 +1,3 @@
+dans le dossier trackr se trouve le projet fonctionnel pour eclipse IDE mais pas en permanence à jour
+
+dans le dossier trackr_ se trouve le projet fonctionnel pour intelij IDE et tout le temps a jour
