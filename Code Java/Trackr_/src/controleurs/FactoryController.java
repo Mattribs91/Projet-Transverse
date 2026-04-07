@@ -1,9 +1,9 @@
-package controller;
+package controleurs;
 
-import main.FactoryMedia;
-import vue.FactoryView;
-import vue.PlaylistsView;
-import vue.UserView;
+import main.ApplicationMedias;
+import vues.FactoryView;
+import vues.PlaylistsView;
+import vues.UserView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -34,7 +34,7 @@ public class FactoryController {
             JPanel center = jPanel;
             center.removeAll();
 
-            UserView profilPage = new UserView(FactoryMedia.getFactoryMedia().getSelma());
+            UserView profilPage = new UserView(ApplicationMedias.getFactoryMedia().getSelma());
 
             center.add(profilPage, BorderLayout.CENTER);
 
@@ -48,7 +48,7 @@ public class FactoryController {
             JPanel center = jPanel;
             center.removeAll();
 
-            FactoryView factoryview = new FactoryView(FactoryMedia.getFactoryMedia(), false);
+            FactoryView factoryview = new FactoryView(ApplicationMedias.getFactoryMedia(), false);
 
             center.add(factoryview, BorderLayout.CENTER);
 
@@ -62,7 +62,7 @@ public class FactoryController {
             JPanel center = jPanel;
             center.removeAll();
 
-            PlaylistsView playlistPage = new PlaylistsView(FactoryMedia.getFactoryMedia().getSelma());
+            PlaylistsView playlistPage = new PlaylistsView(ApplicationMedias.getFactoryMedia().getSelma());
 
             center.add(playlistPage, BorderLayout.CENTER);
 

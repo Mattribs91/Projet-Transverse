@@ -1,8 +1,8 @@
-package vue;
+package vues;
 
 
-import controller.FactoryController;
-import main.FactoryMedia;
+import controleurs.FactoryController;
+import main.ApplicationMedias;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -29,10 +29,10 @@ public class FactoryView extends JPanel {
     private JPanel contentContainer;
 
 
-    FactoryMedia factoryMedia;
+    ApplicationMedias factoryMedia;
 
 
-    public FactoryView(FactoryMedia factoryMedia, Boolean sideBar) {
+    public FactoryView(ApplicationMedias factoryMedia, Boolean sideBar) {
         this.setLayout(new BorderLayout());
         this.setBackground(COLOR_BACKGROUND_DARK);
 

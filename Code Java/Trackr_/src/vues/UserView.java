@@ -1,11 +1,10 @@
-package vue;
+package vues;
 
-import controller.UserController;
-import main.FactoryMedia;
-import models.media.Media;
-import models.user.Avis;
-import models.user.Playlist;
-import models.user.User;
+import controleurs.UserController;
+import modeles.media.Media;
+import modeles.user.Avis;
+import modeles.user.Playlist;
+import modeles.user.User;
 import utils.WrapLayout;
 
 import javax.swing.*;

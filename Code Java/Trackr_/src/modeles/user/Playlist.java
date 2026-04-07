@@ -1,6 +1,6 @@
-package models.user;
+package modeles.user;
 
-import models.media.Media;
+import modeles.media.Media;
 
 import java.util.Date;
 import java.util.List;

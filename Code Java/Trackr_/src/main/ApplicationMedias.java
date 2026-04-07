@@ -1,19 +1,18 @@
 package main;
 
-import models.media.Categorie;
-import models.media.Film;
-import models.media.Media;
-import models.user.Avis;
-import models.user.Playlist;
-import models.user.User;
-import vue.FactoryView;
+import modeles.media.Categorie;
+import modeles.media.Film;
+import modeles.media.Media;
+import modeles.user.Avis;
+import modeles.user.Playlist;
+import modeles.user.User;
+import vues.FactoryView;
 import javax.swing.*;
-import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class FactoryMedia {
+public class ApplicationMedias {
 
 
     User antoine;
@@ -24,10 +23,10 @@ public class FactoryMedia {
 
     List<Media> mediaEnVrac;
 
-    public static FactoryMedia factoryMedia;
+    public static ApplicationMedias factoryMedia;
     public static FactoryView factoryview;
 
-    public FactoryMedia() {
+    public ApplicationMedias() {
 
         JFrame frame = new JFrame("Trackr");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -122,7 +121,7 @@ public class FactoryMedia {
 
 
     public static void main(String[] args) {
-        new FactoryMedia();
+        new ApplicationMedias();
     }
 
 
@@ -162,7 +161,7 @@ public class FactoryMedia {
         this.jordan = jordan;
     }
 
-    public static FactoryMedia getFactoryMedia() {
+    public static ApplicationMedias getFactoryMedia() {
         return factoryMedia;
     }
 }

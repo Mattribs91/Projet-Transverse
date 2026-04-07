@@ -1,8 +1,8 @@
 package modelstest.mediatest;
 
-import models.media.Serie;
-import models.media.Episode;
-import models.media.Categorie;
+import modeles.media.Serie;
+import modeles.media.Episode;
+import modeles.media.Categorie;
 
 import java.util.ArrayList;
 import java.util.Date;

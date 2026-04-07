@@ -1,9 +1,9 @@
 package modelstest.usertest;
 
-import models.user.User;
-import models.user.Playlist;
-import models.media.Film;
-import models.media.Categorie;
+import modeles.user.User;
+import modeles.user.Playlist;
+import modeles.media.Film;
+import modeles.media.Categorie;
 
 import java.util.ArrayList;
 import java.util.Date;

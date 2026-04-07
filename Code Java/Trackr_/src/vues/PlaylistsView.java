@@ -1,7 +1,7 @@
-package vue;
+package vues;
 
-import models.user.Playlist;
-import models.user.User;
+import modeles.user.Playlist;
+import modeles.user.User;
 import utils.WrapLayout;
 
 import javax.swing.*;

@@ -1,7 +1,7 @@
-package controller;
+package controleurs;
 
-import main.FactoryMedia;
-import vue.PlaylistsView;
+import main.ApplicationMedias;
+import vues.PlaylistsView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +13,7 @@ public class UserController {
             JPanel center = jPanel;
             center.removeAll();
 
-            PlaylistsView playlistPage = new PlaylistsView(FactoryMedia.getFactoryMedia().getSelma());
+            PlaylistsView playlistPage = new PlaylistsView(ApplicationMedias.getFactoryMedia().getSelma());
 
             center.add(playlistPage, BorderLayout.CENTER);
 

@@ -1,9 +1,9 @@
-package models.user;
+package modeles.user;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import models.media.Media;
+import modeles.media.Media;
 
 public class User {
 

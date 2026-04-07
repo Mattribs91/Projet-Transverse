@@ -1,7 +1,7 @@
-package models.utils;
+package modeles.utils;
 
-import models.media.*;
-import models.user.*;
+import modeles.media.*;
+import modeles.user.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

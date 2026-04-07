@@ -1,4 +1,4 @@
-package models.media;
+package modeles.media;
 
 public enum Categorie {
     SF,
