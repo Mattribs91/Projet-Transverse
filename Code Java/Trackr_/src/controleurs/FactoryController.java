@@ -2,7 +2,7 @@ package controleurs;
 
 import main.ApplicationMedias;
 import vues.FactoryView;
-import vues.MediaViewedView;
+import vues.PlaylistView;
 import vues.PlaylistsView;
 import vues.UserView;
 
@@ -49,7 +49,7 @@ public class FactoryController {
             JPanel center = jPanel;
             center.removeAll();
 
-            MediaViewedView mediaViewedView = new MediaViewedView(ApplicationMedias.getFactoryMedia().getSelma());
+            PlaylistView mediaViewedView = new PlaylistView(ApplicationMedias.getFactoryMedia().getSelma());
 
             center.add(mediaViewedView, BorderLayout.CENTER);
 

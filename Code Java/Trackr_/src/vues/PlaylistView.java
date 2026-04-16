@@ -8,19 +8,17 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
-import static utils.Utils.*;
 import static utils.Utils.COLOR_ACCENT_GREEN;
 import static utils.Utils.COLOR_BACKGROUND_DARK;
-import static utils.Utils.COLOR_CARD_BACKGROUND;
-import static utils.Utils.COLOR_TEXT_DIM;
 import static utils.Utils.COLOR_TEXT_LIGHT;
 
-public class MediaViewedView extends JPanel {
+public class PlaylistView extends JPanel {
 
 
     User user;
+    Playlist playlist;
 
-    public MediaViewedView(User user) {
+    public PlaylistView(User user) {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.setBackground(COLOR_BACKGROUND_DARK);
         this.setBorder(new EmptyBorder(20, 20, 20, 20));
@@ -53,12 +51,12 @@ public class MediaViewedView extends JPanel {
         leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
         leftPanel.setBackground(COLOR_BACKGROUND_DARK);
 
-        JLabel titleLabel = new JLabel("Mes Medias vu");
+        JLabel titleLabel = new JLabel(playlist.getNom());
         titleLabel.setFont(new Font("Arial", Font.BOLD, 28));
         titleLabel.setForeground(COLOR_TEXT_LIGHT);
 
-        int nbPlaylists = (user.getMesPlaylists() != null) ? user.getMesPlaylists().size() : 0;
-        JLabel countLabel = new JLabel(nbPlaylists + " Media");
+        int nbMedia = (playlist.getLesMedias().size());
+        JLabel countLabel = new JLabel(nbMedia + " Media");
         countLabel.setFont(new Font("Arial", Font.PLAIN, 12));
         countLabel.setForeground(COLOR_ACCENT_GREEN);
 
