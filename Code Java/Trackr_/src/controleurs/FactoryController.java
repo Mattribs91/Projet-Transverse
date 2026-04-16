@@ -2,6 +2,7 @@ package controleurs;
 
 import main.ApplicationMedias;
 import vues.FactoryView;
+import vues.MediaViewedView;
 import vues.PlaylistsView;
 import vues.UserView;
 
@@ -37,6 +38,20 @@ public class FactoryController {
             UserView profilPage = new UserView(ApplicationMedias.getFactoryMedia().getSelma());
 
             center.add(profilPage, BorderLayout.CENTER);
+
+            center.revalidate();
+            center.repaint();
+        });
+    }
+
+    public static void openViewerView(JButton button, JPanel jPanel){
+        button.addActionListener(e -> {
+            JPanel center = jPanel;
+            center.removeAll();
+
+            MediaViewedView mediaViewedView = new MediaViewedView(ApplicationMedias.getFactoryMedia().getSelma());
+
+            center.add(mediaViewedView, BorderLayout.CENTER);
 
             center.revalidate();
             center.repaint();

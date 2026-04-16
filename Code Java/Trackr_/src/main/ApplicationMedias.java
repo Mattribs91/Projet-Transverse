@@ -40,6 +40,7 @@ public class ApplicationMedias {
         factoryMedia = this;
 
         Playlist playlist_1 = new Playlist(new ArrayList<>(), "Mes Films trop trop <3", new Date(), false, selma);
+
         Playlist playlist_2 = new Playlist(new ArrayList<>(), "Playlist n2", new Date(), false, selma);
         Playlist playlist_3 = new Playlist(new ArrayList<>(), "Playlist n3", new Date(), false, antoine);
         Playlist playlist_4 = new Playlist(new ArrayList<>(), "Playlist n4", new Date(), false, antoine);
@@ -63,6 +64,11 @@ public class ApplicationMedias {
         mediaEnVrac.add(filmcute3);
         mediaEnVrac.add(filmcute4);
         mediaEnVrac.add(filmcute5);
+
+        playlist_1.ajouterMedia(mediaEnVrac.get(0));
+        playlist_1.ajouterMedia(mediaEnVrac.get(1));
+        playlist_1.ajouterMedia(mediaEnVrac.get(4));
+
 
         List mesPlaylist = new ArrayList<Playlist>();
         mesPlaylist.add(playlist_1);

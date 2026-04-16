@@ -11,5 +11,4 @@ public class Utils {
     public static final Color COLOR_ACCENT_GREEN = new Color(50, 205, 50); // Vert vif
     public static final Color COLOR_CARD_BACKGROUND = new Color(30, 35, 43);
 
-
 }
