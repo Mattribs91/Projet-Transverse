@@ -15,14 +15,14 @@ import static utils.Utils.COLOR_TEXT_LIGHT;
 public class PlaylistView extends JPanel {
 
 
-    User user;
     Playlist playlist;
 
-    public PlaylistView(User user) {
+    public PlaylistView(Playlist playlist){
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.setBackground(COLOR_BACKGROUND_DARK);
         this.setBorder(new EmptyBorder(20, 20, 20, 20));
-        this.user = user;
+
+        this.playlist = playlist;
 
         //ajout du header
         this.add(createHeaderSection());

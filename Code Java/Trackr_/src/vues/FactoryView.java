@@ -119,8 +119,7 @@ public class FactoryView extends JPanel {
 
         FactoryController.openViewUser(getBtnProfil(), centralContentPanel);
         FactoryController.openViewFactory(getBtnAccueil(), centralContentPanel);
-        FactoryController.openViewPlaylist(getBtnMesListes(), centralContentPanel);
-        FactoryController.openViewerView(getBtnFilmVu(), centralContentPanel);
+        FactoryController.openViewPlaylists(getBtnMesListes(), centralContentPanel);
 
         if(sideBar)
             this.add(sidebarPanel, BorderLayout.WEST);

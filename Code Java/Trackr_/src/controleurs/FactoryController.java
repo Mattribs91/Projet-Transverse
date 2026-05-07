@@ -1,6 +1,7 @@
 package controleurs;
 
 import main.ApplicationMedias;
+import modeles.user.Playlist;
 import vues.FactoryView;
 import vues.PlaylistView;
 import vues.PlaylistsView;
@@ -44,20 +45,6 @@ public class FactoryController {
         });
     }
 
-    public static void openViewerView(JButton button, JPanel jPanel){
-        button.addActionListener(e -> {
-            JPanel center = jPanel;
-            center.removeAll();
-
-            PlaylistView mediaViewedView = new PlaylistView(ApplicationMedias.getFactoryMedia().getSelma());
-
-            center.add(mediaViewedView, BorderLayout.CENTER);
-
-            center.revalidate();
-            center.repaint();
-        });
-    }
-
     public static void openViewFactory(JButton button, JPanel jPanel){
         button.addActionListener(e -> {
             JPanel center = jPanel;
@@ -72,7 +59,7 @@ public class FactoryController {
         });
     }
 
-    public static void openViewPlaylist(JButton button, JPanel jPanel){
+    public static void openViewPlaylists(JButton button, JPanel jPanel){
         button.addActionListener(e -> {
             JPanel center = jPanel;
             center.removeAll();
